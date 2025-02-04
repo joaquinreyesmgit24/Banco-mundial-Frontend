@@ -1,4 +1,6 @@
 const statistics = ()=>import('./views/Statistics.vue')
+const users = ()=>import('./views/Users.vue')
+const companies = ()=>import('./views/Companies.vue')
 
 
 export const PrivateRoutes = [
@@ -13,6 +15,26 @@ export const PrivateRoutes = [
         meta: {
             title: 'statistics',
             menu: 'statistics',
+            requiredRole: ['Administrador']
+        }
+    },
+    {
+        path: '/users',
+        component: users,
+        name: 'users',
+        meta: {
+            title: 'users',
+            menu: 'users',
+            requiredRole: ['Administrador']
+        }
+    },
+    {
+        path: '/companies',
+        component: companies,
+        name: 'companies',
+        meta: {
+            title: 'companies',
+            menu: 'companies',
             requiredRole: ['Administrador']
         }
     },
