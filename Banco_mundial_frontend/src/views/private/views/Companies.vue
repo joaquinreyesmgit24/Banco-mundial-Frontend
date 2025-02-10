@@ -41,13 +41,13 @@
                     <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full p-4 mb-4"
                         role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                         <div class="flex items-center">
-                            <h3 class="text-lg font-medium">¿Estás seguro que deseas eliminar a la empresa {{userDeleted.username}}?</h3>
+                            <h3 class="text-lg font-medium">¿Estás seguro que deseas eliminar a la empresa {{companyDeleted.name}}?</h3>
                         </div>
                         <div class="mt-2 mb-4 text-sm">
                             Este elemento se eliminará permanentemente. Esta acción no se puede revertir.
                         </div>
                         <div class="flex">
-                            <button @click="deleteUser(this.userDeleted.id)" type="button"
+                            <button @click="deleteCompany(this.companyDeleted.id)" type="button"
                                 class="text-white inline-flex items-center bg-red-700 hover:bg-red-800 border border-red-800 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2">
                                 Eliminar
                             </button>
@@ -75,49 +75,49 @@
                                     d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
-                        <form @submit.prevent="updateUser(editedUser.id, editedUser)" class="p-4 md:p-5">
+                        <form @submit.prevent="updateCompany(editedCompany.id,editedCompany)" class="p-4 md:p-5">
                             <div v-show="nextCompanyUpdateModal" class="grid gap-2 mb-4 grid-cols-2">
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Id:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="code" class="block mb-2 text-sm font-medium text-gray-900">Código:</label>
+                                    <input type="text" name="code" id="code"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Código" v-model.trim="editedCompany.code" />
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
+                                    <input type="text" name="name" id="name"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Nombre" v-model.trim="editedCompany.name" />
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Número de casa/piso/puerta:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="floorNumber" class="block mb-2 text-sm font-medium text-gray-900">Número de casa/piso/puerta:</label>
+                                    <input type="text" name="floorNumber" id="floorNumber"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Número de casa/Piso/Puerta" v-model.trim="editedCompany.floorNumber" />
                                 </div> 
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Calle:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="street" class="block mb-2 text-sm font-medium text-gray-900">Calle:</label>
+                                    <input type="text" name="street" id="street"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Calle" v-model.trim="editedCompany.street" />
                                 </div> 
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Ciudad:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="city" class="block mb-2 text-sm font-medium text-gray-900">Ciudad:</label>
+                                    <input type="text" name="city" id="city"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Ciudad" v-model.trim="editedCompany.city" />
                                 </div> 
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Estado/provincia:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="state" class="block mb-2 text-sm font-medium text-gray-900">Estado/provincia:</label>
+                                    <input type="text" name="state" id="state"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Estado/Provincia" v-model.trim="editedCompany.state" />
                                 </div> 
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Número de teléfono 1:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="phoneNumberOne" class="block mb-2 text-sm font-medium text-gray-900">Número de teléfono 1:</label>
+                                    <input type="text" name="phoneNumberOne" id="phoneNumberOne"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Número de teléfono 1" v-model.trim="editedCompany.phoneNumberOne" />
                                 </div> 
                             </div>
                             <div class="flex justify-end mt-4" v-show="nextCompanyUpdateModal">
@@ -128,54 +128,54 @@
                             </div>
                             <div v-show="!nextCompanyUpdateModal" class="grid gap-2 mb-4 grid-cols-2">
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Número de teléfono 2:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="phoneNumberSecond" class="block mb-2 text-sm font-medium text-gray-900">Número de teléfono 2:</label>
+                                    <input type="text" name="phoneNumberSecond" id="phoneNumberSecond"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Número de teléfono 2" v-model.trim="editedCompany.phoneNumberSecond" />
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Número de preferencia:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="preferenceNumber" class="block mb-2 text-sm font-medium text-gray-900">Número de preferencia:</label>
+                                    <input type="text" name="preferenceNumber" id="preferenceNumber"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Número de preferencia" v-model.trim="editedCompany.preferenceNumber" />
                                 </div> 
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Número de fax:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="faxNumber" class="block mb-2 text-sm font-medium text-gray-900">Número de fax:</label>
+                                    <input type="text" name="faxNumber" id="faxNumber"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Número de fax" v-model.trim="editedCompany.faxNumber" />
                                 </div> 
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Dirección de correo electrónico:</label>
-                                    <input type="text" name="username" id="username"
+                                    <label for="emailAddress" class="block mb-2 text-sm font-medium text-gray-900">Dirección de correo electrónico:</label>
+                                    <input type="text" name="emailAddress" id="emailAddress"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Correo de la empresa" v-model.trim="editedCompany.emailAddress" />
                                 </div> 
                                 <div class="col-span-1">
-                                    <label for="role"
+                                    <label for="sampleSector"
                                         class="block mb-2 text-sm font-medium text-gray-900">Sector de la muestra:</label>
-                                    <select id="role"
+                                    <select id="sampleSector"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        v-model="editedUser.roleId">
+                                        v-model="editedCompany.sampleSectorId">
                                         <option value="" disabled selected>
-                                            Seleccionar rol
+                                            Seleccionar sector de la muestra
                                         </option>
-                                        <option v-for="role in roles" :key="role.id" :value="role.id">
-                                            {{ role.name }}
+                                        <option v-for="sampleSector in sampleSectors" :key="sampleSector.id" :value="sampleSector.id">
+                                            {{ sampleSector.description }}
                                         </option>
                                     </select>
                                 </div>
                                 <div class="col-span-1">
-                                    <label for="role"
+                                    <label for="sampleSize"
                                         class="block mb-2 text-sm font-medium text-gray-900">Tamaño de la muestra:</label>
-                                    <select id="role"
+                                    <select id="SampleSize"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        v-model="editedUser.roleId">
+                                        v-model="editedCompany.sampleSizeId">
                                         <option value="" disabled selected>
-                                            Seleccionar rol
+                                            Seleccionar tamaño de la muestra
                                         </option>
-                                        <option v-for="role in roles" :key="role.id" :value="role.id">
-                                            {{ role.name }}
+                                        <option v-for="sampleSize in sampleSizes" :key="sampleSize.id" :value="sampleSize.id">
+                                            {{ sampleSize.description }}
                                         </option>
                                     </select>
                                 </div>
@@ -183,19 +183,19 @@
                                     <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Ubicación de la muestra:</label>
                                     <input type="text" name="username" id="username"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedUser.username" />
+                                        placeholder="Nombre de usuario" v-model.trim="editedCompany.sampleLocation" />
                                 </div> 
                                 <div class="col-span-1">
-                                    <label for="role"
+                                    <label for="panel"
                                         class="block mb-2 text-sm font-medium text-gray-900">Panel de la muestra:</label>
-                                    <select id="role"
+                                    <select id="panel"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        v-model="editedUser.roleId">
+                                        v-model="editedCompany.panelId">
                                         <option value="" disabled selected>
-                                            Seleccionar rol
+                                            Seleccionar panel de la muestra
                                         </option>
-                                        <option v-for="role in roles" :key="role.id" :value="role.id">
-                                            {{ role.name }}
+                                        <option v-for="panel in panels" :key="panel.id" :value="panel.id">
+                                            {{ panel.description }}
                                         </option>
                                     </select>
                                 </div>
@@ -214,6 +214,7 @@
                     </div>
                 </div>
             </div>
+           
             <div v-if="showCompanyCreateModal" class="fixed z-10 inset-0 overflow-y-auto">
                 <div class="flex items-center justify-center min-h-screen">
                     <div class="fixed inset-0 transition-opacity" @click="closeCreateCompanyModal" aria-hidden="true">
@@ -422,6 +423,11 @@
                         label: "Correo",
                         field: "emailAddress",
                     },
+                    {
+                        label: "Acciones",
+                        field: "acciones",
+                        type: "slots",
+                    },
                 ],
                 rows: [],
                 sampleSizes: [],
@@ -440,7 +446,7 @@
                     phoneNumberSecond:"",
                     faxNumber:"",
                     preferenceNumber:"",
-                    emailAdress:"",
+                    emailAddress:"",
                     sampleSectorId:"",
                     sampleSizeId:"",
                     panelId:""
@@ -462,13 +468,23 @@
                     sampleSizeId:"",
                     panelId:""
                 },
-                userDeleted:{
+                 companyDeleted:{
                     id:"",
-                    username: "",
-                    password: "",
-                    repeat_password: "",
-                    roleId: "",
-                    status: "",
+                    code:"",
+                    name:"",
+                    sampleLocation:"",
+                    floorNumber:"",
+                    street:"",
+                    city:"",
+                    state:"",
+                    phoneNumberOne:"",
+                    phoneNumberSecond:"",
+                    faxNumber:"",
+                    preferenceNumber:"",
+                    emailAddress:"",
+                    sampleSectorId:"",
+                    sampleSizeId:"",
+                    panelId:""
                 }
                 
             };
@@ -481,13 +497,9 @@
         },
         methods: {
             openUpdateCompanyModal(item) {
-                this.editedUser = { ...item, roleId: item.role.id,file:'', password: '', repeat_password: '' };
+                console.log(item)
+                this.editedCompany = { ...item };
                 this.showCompanyUpdateModal = true;
-                if (item.status === "Activo") {
-                    this.editedUser.status = true;
-                } else {
-                    this.editedUser.status = false;
-                }
             },
             openCreateCompanyModal() {
                 this.showCompanyCreateModal = true;
@@ -499,7 +511,7 @@
                 this.showCompanyCreateModal = false;
             },
             openDeleteCompanyAlert(item){
-                this.userDeleted={...item}
+                this.companyDeleted={...item}
                 this.showCompanyDeleteAlert = true;
             },
             closeDeleteCompanyAlert(){
@@ -510,10 +522,21 @@
                     .then((response) => {
                         this.rows = response.companies.map((company) => ({
                             id: company.id,
+                            code: company.code,
                             name: company.name,
                             sampleLocation: company.sampleLocation,
+                            floorNumber: company.floorNumber,
+                            street: company.street,
+                            city: company.city,
+                            state:company.state,
                             phoneNumberOne: company.phoneNumberOne,
-                            emailAddress: company.emailAddress
+                            phoneNumberSecond: company.phoneNumberSecond,
+                            faxNumber: company.faxNumber,
+                            preferenceNumber: company.preferenceNumber,
+                            emailAddress: company.emailAddress,
+                            sampleSectorId: company.sampleSectorId,
+                            sampleSizeId: company.sampleSizeId,
+                            panelId: company.panelId
                         }));
                     })
                     .catch((error) => {
@@ -562,10 +585,21 @@
                         this.toast.success(response.data.msg);
                         this.rows = response.data.companies.map((company) => ({
                             id: company.id,
+                            code: company.code,
                             name: company.name,
                             sampleLocation: company.sampleLocation,
+                            floorNumber: company.floorNumber,
+                            street: company.street,
+                            city: company.city,
+                            state:company.state,
                             phoneNumberOne: company.phoneNumberOne,
-                            emailAddress: company.emailAddress
+                            phoneNumberSecond: company.phoneNumberSecond,
+                            faxNumber: company.faxNumber,
+                            preferenceNumber: company.preferenceNumber,
+                            emailAddress: company.emailAddress,
+                            sampleSectorId: company.sampleSectorId,
+                            sampleSizeId: company.sampleSizeId,
+                            panelId: company.panelId
                         }));
                         this.closeCreateCompanyModal()
                     })
@@ -582,32 +616,35 @@
                         }
                     });
             },
-            updateUser(userId, editedUser) {
-                const formData = new FormData();
-                formData.append('username', editedUser.username)
-                formData.append('password', editedUser.password)
-                formData.append('repeat_password', editedUser.repeat_password)
-                formData.append('roleId', editedUser.roleId)
-                formData.append('status', editedUser.status)
-                if(editedUser.file){
-                    formData.append('file', editedUser.file);
-                }
-                GlobalService.setDataImage("/auth/update-user", userId, formData)
+            updateCompany(companyId, editedCompany) {
+                console.log(companyId,editedCompany )
+                GlobalService.setData("/company/update-company", companyId, editedCompany)
                     .then((response) => {
-                        console.log(editedUser)
                         this.toast.success(response.msg);
-                        this.rows = response.users.map((user) => ({
-                            id: user.id,
-                            username: user.username,
-                            role: user.role,
-                            date: dayjs(user.createdAt).format("DD-MM-YYYY HH:mm:ss"),
-                            status: user.status ? "Activo" : "Inactivo",
+                        this.rows = response.companies.map((company) => ({
+                            id: company.id,
+                            code: company.code,
+                            name: company.name,
+                            sampleLocation: company.sampleLocation,
+                            floorNumber: company.floorNumber,
+                            street: company.street,
+                            city: company.city,
+                            state:company.state,
+                            phoneNumberOne: company.phoneNumberOne,
+                            phoneNumberSecond: company.phoneNumberSecond,
+                            faxNumber: company.faxNumber,
+                            preferenceNumber: company.preferenceNumber,
+                            emailAddress: company.emailAddress,
+                            sampleSectorId: company.sampleSectorId,
+                            sampleSizeId: company.sampleSizeId,
+                            panelId: company.panelId
                         }));
-                        this.closeUpdateUserModal()
+                        this.closeUpdateCompanyModal()
                     })
                     .catch((e) => {
                         let errors = e.response.data.errors;
                         let error = e.response.data.error;
+                        console.log(errors)
                         if (errors) {
                             errors.forEach((error_element) => {
                                 this.toast.error(error_element.msg);
@@ -617,18 +654,30 @@
                         }
                     });
             },
-            deleteUser(userId) {
-                GlobalService.deleteDataById("/auth/delete-user", userId)
+            deleteCompany(companyId) {
+                console.log(companyId)
+                GlobalService.deleteDataById("/company/delete-company", companyId)
                     .then((response) => {
                         this.toast.success(response.msg);
-                        this.rows = response.users.map((user) => ({
-                            id: user.id,
-                            username: user.username,
-                            role: user.role,
-                            date: dayjs(user.createdAt).format("DD-MM-YYYY HH:mm:ss"),
-                            status: user.status ? "Activo" : "Inactivo",
+                        this.rows = response.companies.map((company) => ({
+                            id: company.id,
+                            code: company.code,
+                            name: company.name,
+                            sampleLocation: company.sampleLocation,
+                            floorNumber: company.floorNumber,
+                            street: company.street,
+                            city: company.city,
+                            state:company.state,
+                            phoneNumberOne: company.phoneNumberOne,
+                            phoneNumberSecond: company.phoneNumberSecond,
+                            faxNumber: company.faxNumber,
+                            preferenceNumber: company.preferenceNumber,
+                            emailAddress: company.emailAddress,
+                            sampleSectorId: company.sampleSectorId,
+                            sampleSizeId: company.sampleSizeId,
+                            panelId: company.panelId
                         }));
-                        this.closeDeleteUserAlert()
+                        this.closeDeleteCompanyAlert()
                     })
                     .catch((e) => {
                         let errors = e.response.data.errors;
