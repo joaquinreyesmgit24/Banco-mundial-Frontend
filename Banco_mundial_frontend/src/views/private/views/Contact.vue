@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-cols-1 gap-6 mb-6">
         <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
-            <form @submit.prevent="updateCompany(editedCompany.id, editedCompany)"
+            <form @submit.prevent="createCall(call)"
                 class="border border-neutral-200 rounded-md p-4 md:p-5 bg-neutral-50">
                 <div class="grid gap-2 mb-4 grid-cols-2">
                     <div class="col-span-2 mb-3">
@@ -9,12 +9,12 @@
                             número:</label>
                         <div class="flex">
                             <div class="mr-4">
-                                <input type="radio" name="number" value="1" v-model="selectedNumber">
-                                972167008
+                                <input type="radio" name="number" :value="randomCompany.phoneNumberOne" v-model="call.phone">
+                                {{ randomCompany.phoneNumberOne }}
                             </div>
                             <div>
-                                <input type="radio" name="number" value="2" v-model="selectedNumber">
-                                976516751
+                                <input type="radio" name="number" :value="randomCompany.phoneNumberSecond" v-model="call.phone">
+                                {{ randomCompany.phoneNumberSecond }}
                             </div>
                         </div>
                     </div>
@@ -23,19 +23,19 @@
                             empresa:</label>
                         <input type="text" name="name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                            placeholder="Nombre" disabled />
+                            placeholder="Rut" disabled v-model="randomCompany.rut" />
                     </div>
                     <div class="col-span-2 mb-3">
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nombre de la
                             empresa:</label>
                         <input type="text" name="name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                            placeholder="Nombre" disabled />
+                            placeholder="Nombre" disabled  v-model="randomCompany.name"/>
                     </div>
                     <div class="col-span-2 mb-3">
                         <label for="role" class="block mb-2 text-sm font-medium text-gray-900">Incidencia:</label>
                         <select id="role"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" v-model="call.incidenceId">
                             <option value="" disabled selected>
                                 Seleccionar incidencia
                             </option>
@@ -44,7 +44,21 @@
                             </option>
                         </select>
                     </div>
+                    <div class="col-span-2 mb-3" v-if="call.incidenceId==2">
+                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">
+                        Comentario:</label>
+                    <textarea name="comentarios" rows="5"
+                        cols="165" v-model="call.comment"></textarea>
+                    </div>
                 </div>
+                <button type="submit" v-if="call.incidenceId==1"
+                    class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
+                    Desplegar formulario de contactación
+                </button>
+                <button type="submit" v-if="call.incidenceId==2"
+                        class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
+                    Agregar incidencia
+                </button>
                 <table class="min-w-full bg-white border border-gray-300 text-sm text-left">
                     <thead class="bg-gray-50 text-gray-600 uppercase text-xs border-b border-gray-300">
                         <tr>
@@ -55,50 +69,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-t border-gray-300">
-                            <td class="py-2 px-4 border border-gray-300">972167008</td>
-                            <td class="py-2 px-4 border border-gray-300">No contesta</td>
-                            <td class="py-2 px-4 border border-gray-300">No respondió a la solicitud</td>
-                            <td class="py-2 px-4 border border-gray-300">10-02-2025</td>
+                        <tr v-for="call in calls" :key="call.id" class="border-t border-gray-300">
+                            <td class="py-2 px-4 border border-gray-300">{{ call.phone }}</td>
+                            <td class="py-2 px-4 border border-gray-300">{{call.incident.description}}</td>
+                            <td class="py-2 px-4 border border-gray-300">{{ call.comment || 'Sin comentario' }}</td>
+                            <td class="py-2 px-4 border border-gray-300">{{ new Date(call.date).toLocaleDateString() }}</td>
                         </tr>
+                    
                     </tbody>
-                    <button type="button"
-                        class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
-                        Agregar incidencia
-                    </button>
                 </table>
             </form>
-            <div v-if="1 == 2" class="fixed z-10 inset-0 overflow-y-auto">
-                <div class="flex items-center justify-center min-h-screen">
-                    <div class="fixed inset-0 transition-opacity" @click="" aria-hidden="true">
-                        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
-                    </div>
-                    <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full"
-                        role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                        <button class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none">
-                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                        <form @submit.prevent="createUser(createdUser)" class="p-4 md:p-5">
-                            <div class="grid gap-2 mb-4 grid-cols-2">
-                                <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">
-                                        Comentario:</label>
-                                    <textarea name="comentarios" rows="10"
-                                        cols="40">Escribe aquí tus comentarios</textarea>
-                                </div>
-                            </div>
-                            <button type="submit"
-                                class="text-white inline-flex items-center bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                Cerrar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -117,14 +97,44 @@ export default {
     },
     data() {
         return {
-            incidents: []
+            calls:[],
+            incidents: [],
+            randomCompany: "",
+            toast: useToast(),
+            call:{
+                phone: "",
+                comment:"",
+                date:"11/02/2025",
+                companyId:"",
+                incidenceId:""
+            }
         }
     },
     mounted() {
         this.getDataIncidents()
-        // this.getDataRandomCompany()
+        this.getDataRandomCompany(this.getUserID)
     },
     methods: {
+        createCall(call){
+            GlobalService.createData("/call/create-call", call)
+                    .then((response) => {
+                        this.toast.success(response.data.msg);
+                        console.log(response)
+                        this.calls = response.data.calls
+                    })
+                    .catch((e) => {
+                        let errors = e.response.data.errors;
+                        let error = e.response.data.error;
+                        console.log(errors)
+                        if (errors) {
+                            errors.forEach((error_element) => {
+                                this.toast.error(error_element.msg);
+                            });
+                        } else {
+                            this.toast.error(error);
+                        }
+                    });
+        },  
         getDataIncidents() {
             GlobalService.getData("/call/list-incidents")
                 .then((response) => {
@@ -135,9 +145,21 @@ export default {
                 });
         },
         getDataRandomCompany(userId) {
-            GlobalService.getData(`/company/get-random-company/${userId}`)
+            GlobalService.getData(`/call/get-random-company/${userId}`)
                 .then((response) => {
-                    this.incidents = response.incidents
+                    this.randomCompany=response
+                    this.call.companyId= response.id
+                    this.call.phone=response.phoneNumberOne
+                    this.getDataCalls(response.id)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        getDataCalls(companyId){
+            GlobalService.getData(`/call/list-calls/${companyId}`)
+                .then((response) => {
+                    this.calls = response.calls
                 })
                 .catch((error) => {
                     console.log(error);

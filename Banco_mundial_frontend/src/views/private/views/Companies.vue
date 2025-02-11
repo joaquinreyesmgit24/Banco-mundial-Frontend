@@ -84,6 +84,12 @@
                                         placeholder="Código" v-model.trim="editedCompany.code" />
                                 </div>
                                 <div class="col-span-2">
+                                    <label for="rut" class="block mb-2 text-sm font-medium text-gray-900">Rut:</label>
+                                    <input type="text" name="rut" id="rut"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Rut" v-model.trim="editedCompany.rut" />
+                                </div>
+                                <div class="col-span-2">
                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
                                     <input type="text" name="name" id="name"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
@@ -237,6 +243,12 @@
                                     <input type="text" name="code" id="code"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Código" v-model.trim="createdCompany.code" />
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="code" class="block mb-2 text-sm font-medium text-gray-900">Rut:</label>
+                                    <input type="text" name="rut" id="rut"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Rut" v-model.trim="createdCompany.rut" />
                                 </div>
                                 <div class="col-span-2">
                                     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
@@ -408,6 +420,10 @@
                 toast: useToast(),
                 columns: [
                     {
+                        label: "Rut",
+                        field: "rut",
+                    },
+                    {
                         label: "Empresa",
                         field: "name",
                     },
@@ -436,6 +452,7 @@
                 editedCompany: {
                     id:"",
                     code:"",
+                    rut:"",
                     name:"",
                     sampleLocation:"",
                     floorNumber:"",
@@ -453,6 +470,7 @@
                 },
                 createdCompany: {
                     code:"",
+                    rut:"",
                     name:"",
                     sampleLocation:"",
                     floorNumber:"",
@@ -468,9 +486,10 @@
                     sampleSizeId:"",
                     panelId:""
                 },
-                 companyDeleted:{
+                companyDeleted:{
                     id:"",
                     code:"",
+                    rut:"",
                     name:"",
                     sampleLocation:"",
                     floorNumber:"",
@@ -523,6 +542,7 @@
                         this.rows = response.companies.map((company) => ({
                             id: company.id,
                             code: company.code,
+                            rut:company.rut,
                             name: company.name,
                             sampleLocation: company.sampleLocation,
                             floorNumber: company.floorNumber,
@@ -577,6 +597,7 @@
                         this.rows = response.data.companies.map((company) => ({
                             id: company.id,
                             code: company.code,
+                            rut:company.rut,
                             name: company.name,
                             sampleLocation: company.sampleLocation,
                             floorNumber: company.floorNumber,
@@ -615,6 +636,7 @@
                         this.rows = response.companies.map((company) => ({
                             id: company.id,
                             code: company.code,
+                            rut:company.rut,
                             name: company.name,
                             sampleLocation: company.sampleLocation,
                             floorNumber: company.floorNumber,
@@ -653,6 +675,7 @@
                         this.rows = response.companies.map((company) => ({
                             id: company.id,
                             code: company.code,
+                            rut:company.rut,
                             name: company.name,
                             sampleLocation: company.sampleLocation,
                             floorNumber: company.floorNumber,
