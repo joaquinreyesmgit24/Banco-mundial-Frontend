@@ -346,10 +346,7 @@
             getDataRoles() {
                 GlobalService.getData("/auth/list-roles")
                     .then((response) => {
-                        this.roles = response.roles.map((role) => ({
-                            id: role.id,
-                            name: role.name,
-                        }));
+                        this.roles = response.roles
                     })
                     .catch((error) => {
                         console.log(error);

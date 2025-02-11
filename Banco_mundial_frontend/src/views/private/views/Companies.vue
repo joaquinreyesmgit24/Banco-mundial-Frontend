@@ -207,7 +207,7 @@
                                 </button>
                                 <button type="submit"
                                     class="text-white inline-flex items-center bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                    Actualizar estudio
+                                    Actualizar empresa
                                 </button>
                             </div>
                         </form>
@@ -362,7 +362,7 @@
                                 </button>
                                 <button type="submit"
                                     class="text-white inline-flex items-center bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                    Crear estudio
+                                    Crear empresa
                                 </button>
                             </div>
                         </form>
@@ -546,10 +546,7 @@
             getDataPanels() {
                 GlobalService.getData("/company/list-panels")
                     .then((response) => {
-                        this.panels = response.panels.map((panel) => ({
-                            id: panel.id,
-                            description: panel.description,
-                        }));
+                        this.panels = response.panels
                     })
                     .catch((error) => {
                         console.log(error);
@@ -558,10 +555,7 @@
             getDataSampleSectors() {
                 GlobalService.getData("/company/list-sample-sectors")
                     .then((response) => {
-                        this.sampleSectors = response.sampleSectors.map((sampleSector) => ({
-                            id: sampleSector.id,
-                            description: sampleSector.description,
-                        }));
+                        this.sampleSectors = response.sampleSectors
                     })
                     .catch((error) => {
                         console.log(error);
@@ -570,10 +564,7 @@
             getDataSampleSizes() {
                 GlobalService.getData("/company/list-sample-sizes")
                     .then((response) => {
-                        this.sampleSizes = response.sampleSizes.map((sampleSize) => ({
-                            id: sampleSize.id,
-                            description: sampleSize.description,
-                        }));
+                        this.sampleSizes = response.sampleSizes
                     })
                     .catch((error) => {
                         console.log(error);

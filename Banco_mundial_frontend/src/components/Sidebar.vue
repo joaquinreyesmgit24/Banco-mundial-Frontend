@@ -17,17 +17,23 @@
                 </router-link>
             </li>
             <li class="mb-1" v-if="userRol=='Administrador'">
+                <router-link to="/contact" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                    <i class="ri-phone-fill mr-3"></i>
+                    <span class="text-sm">Contactar</span>
+                </router-link>
+            </li>
+            <li class="mb-1" v-if="userRol=='Administrador'">
                 <router-link to="/studies" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
                     <i class="ri-file-list-line mr-3"></i>
                     <span class="text-sm">Encuestas</span>
                 </router-link>
             </li>
-            <li class="mb-1">
+            <!-- <li class="mb-1">
                 <router-link to="/reports" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
                     <i class="ri-phone-fill mr-3"></i>
                     <span class="text-sm">Llamadas</span>
                 </router-link>
-            </li>
+            </li> -->
         </ul>
     </div>
     <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay"></div>
