@@ -125,6 +125,24 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de teléfono 1" v-model.trim="editedCompany.phoneNumberOne" />
                                 </div> 
+                                <div class="col-span-2">
+                                    <label for="numberPhoneCallsOne" class="block mb-2 text-sm font-medium text-gray-900">Número de llamadas del teléfono 1:</label>
+                                    <input type="text" name="numberPhoneCallsOne" id="numberPhoneCallsOne"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número de llamadas del teléfono 1" v-model.trim="editedCompany.numberPhoneCallsOne" />
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="phoneNumberSecond" class="block mb-2 text-sm font-medium text-gray-900">Número de teléfono 2:</label>
+                                    <input type="text" name="phoneNumberSecond" id="phoneNumberSecond"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número de teléfono 2" v-model.trim="editedCompany.phoneNumberSecond" />
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="numberPhoneCallSecond" class="block mb-2 text-sm font-medium text-gray-900">Número de llamadas del teléfono 2:</label>
+                                    <input type="text" name="numberPhoneCallSecond" id="numberPhoneCallSecond"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número de llamadas del teléfono 2" v-model.trim="editedCompany.numberPhoneCallSecond" />
+                                </div>
                             </div>
                             <div class="flex justify-end mt-4" v-show="nextCompanyUpdateModal">
                                 <button type="button" @click="nextUpdateModal"
@@ -134,17 +152,23 @@
                             </div>
                             <div v-show="!nextCompanyUpdateModal" class="grid gap-2 mb-4 grid-cols-2">
                                 <div class="col-span-2">
-                                    <label for="phoneNumberSecond" class="block mb-2 text-sm font-medium text-gray-900">Número de teléfono 2:</label>
-                                    <input type="text" name="phoneNumberSecond" id="phoneNumberSecond"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Número de teléfono 2" v-model.trim="editedCompany.phoneNumberSecond" />
-                                </div>
-                                <div class="col-span-2">
                                     <label for="preferenceNumber" class="block mb-2 text-sm font-medium text-gray-900">Número de preferencia:</label>
                                     <input type="text" name="preferenceNumber" id="preferenceNumber"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de preferencia" v-model.trim="editedCompany.preferenceNumber" />
-                                </div> 
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="callStartTime" class="block mb-2 text-sm font-medium text-gray-900">Horario de inicio de llamada:</label>
+                                    <input type="text" name="callStartTime" id="callStartTime"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        v-model.trim="editedCompany.callStartTime" />
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="callEndTime" class="block mb-2 text-sm font-medium text-gray-900">Horario de termino de llamada:</label>
+                                    <input type="text" name="callEndTime" id="callEndTime"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        v-model.trim="editedCompany.callEndTime" />
+                                </div>
                                 <div class="col-span-2">
                                     <label for="faxNumber" class="block mb-2 text-sm font-medium text-gray-900">Número de fax:</label>
                                     <input type="text" name="faxNumber" id="faxNumber"
@@ -220,7 +244,6 @@
                     </div>
                 </div>
             </div>
-           
             <div v-if="showCompanyCreateModal" class="fixed z-10 inset-0 overflow-y-auto">
                 <div class="flex items-center justify-center min-h-screen">
                     <div class="fixed inset-0 transition-opacity" @click="closeCreateCompanyModal" aria-hidden="true">
@@ -286,6 +309,24 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de teléfono 1" v-model.trim="createdCompany.phoneNumberOne" />
                                 </div> 
+                                <div class="col-span-2">
+                                    <label for="numberPhoneCallsOne" class="block mb-2 text-sm font-medium text-gray-900">Número de llamadas del teléfono 1:</label>
+                                    <input type="text" name="numberPhoneCallsOne" id="numberPhoneCallsOne"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número de llamadas del teléfono 1" v-model.trim="createdCompany.numberPhoneCallsOne" />
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="phoneNumberSecond" class="block mb-2 text-sm font-medium text-gray-900">Número de teléfono 2:</label>
+                                    <input type="text" name="phoneNumberSecond" id="phoneNumberSecond"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número de teléfono 2" v-model.trim="createdCompany.phoneNumberSecond" />
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="numberPhoneCallsSecond" class="block mb-2 text-sm font-medium text-gray-900">Número de llamadas teléfono 2:</label>
+                                    <input type="text" name="numberPhoneCallsSecond" id="numberPhoneCallsSecond"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número de llamadas del teléfono 2" v-model.trim="createdCompany.numberPhoneCallsSecond" />
+                                </div>
                             </div>
                             <div class="flex justify-end mt-4" v-show="nextCompanyCreateModal">
                                 <button type="button" @click="nextCreateModal"
@@ -295,17 +336,23 @@
                             </div>
                             <div v-show="!nextCompanyCreateModal" class="grid gap-2 mb-4 grid-cols-2">
                                 <div class="col-span-2">
-                                    <label for="phoneNumberSecond" class="block mb-2 text-sm font-medium text-gray-900">Número de teléfono 2:</label>
-                                    <input type="text" name="phoneNumberSecond" id="phoneNumberSecond"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Número de teléfono 2" v-model.trim="createdCompany.phoneNumberSecond" />
-                                </div>
-                                <div class="col-span-2">
                                     <label for="preferenceNumber" class="block mb-2 text-sm font-medium text-gray-900">Número de preferencia:</label>
                                     <input type="text" name="preferenceNumber" id="preferenceNumber"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de preferencia" v-model.trim="createdCompany.preferenceNumber" />
                                 </div> 
+                                <div class="col-span-2">
+                                    <label for="callStartTime" class="block mb-2 text-sm font-medium text-gray-900">Horario de inicio llamada:</label>
+                                    <input type="time" name="callStartTime" id="callStartTime"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        v-model.trim="createdCompany.callStartTime" />
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="callEndTime" class="block mb-2 text-sm font-medium text-gray-900">Horario de termino de llamada:</label>
+                                    <input type="time" name="callEndTime" id="callEndTime"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        v-model.trim="createdCompany.callEndTime" />
+                                </div>
                                 <div class="col-span-2">
                                     <label for="faxNumber" class="block mb-2 text-sm font-medium text-gray-900">Número de fax:</label>
                                     <input type="text" name="faxNumber" id="faxNumber"
