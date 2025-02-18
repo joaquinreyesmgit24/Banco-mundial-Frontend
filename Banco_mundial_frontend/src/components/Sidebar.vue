@@ -23,9 +23,9 @@
                 </router-link>
             </li>
             <li class="mb-1" v-if="userRol=='Administrador'">
-                <router-link to="/studies" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                <router-link to="/quotas" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
                     <i class="ri-file-list-line mr-3"></i>
-                    <span class="text-sm">Encuestas</span>
+                    <span class="text-sm">Cuotas</span>
                 </router-link>
             </li>
             <!-- <li class="mb-1">

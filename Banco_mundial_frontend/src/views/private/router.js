@@ -2,6 +2,8 @@ const statistics = ()=>import('./views/Statistics.vue')
 const users = ()=>import('./views/Users.vue')
 const companies = ()=>import('./views/Companies.vue')
 const contact = ()=>import('./views/Contact.vue')
+const quotas = ()=>import('./views/Quotas.vue')
+
 
 
 export const PrivateRoutes = [
@@ -46,6 +48,16 @@ export const PrivateRoutes = [
         meta: {
             title: 'contact',
             menu: 'contact',
+            requiredRole: ['Administrador']
+        }
+    },
+    {
+        path: '/quotas',
+        component: quotas,
+        name: 'quotas',
+        meta: {
+            title: 'quotas',
+            menu: 'quotas',
             requiredRole: ['Administrador']
         }
     },
