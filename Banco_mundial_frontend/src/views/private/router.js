@@ -8,6 +8,8 @@ const survey_P00 = ()=>import('./views/Survey/Page_00.vue')
 const survey_P01 = ()=>import('./views/Survey/Page_01.vue')
 const survey_P02 = ()=>import('./views/Survey/Page_02.vue')
 const survey_P03 = ()=>import('./views/Survey/Page_03.vue')
+const quotas = ()=>import('./views/Quotas.vue')
+
 
 
 export const PrivateRoutes = [
@@ -52,6 +54,16 @@ export const PrivateRoutes = [
         meta: {
             title: 'contact',
             menu: 'contact',
+            requiredRole: ['Administrador']
+        }
+    },
+    {
+        path: '/quotas',
+        component: quotas,
+        name: 'quotas',
+        meta: {
+            title: 'quotas',
+            menu: 'quotas',
             requiredRole: ['Administrador']
         }
     },
