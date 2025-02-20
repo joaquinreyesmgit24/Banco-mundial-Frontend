@@ -1,7 +1,13 @@
 <template>
     <div class="grid grid-cols-1 gap-6 mb-6">
+        
         <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
-            <form @submit.prevent="createCall(call)"
+            <h2 v-if="randomCompany.length==0" class="text-center">
+                No hay empresas disponibles para contactar
+                <i class="ri-error-warning-fill ml-2"></i>
+            </h2>
+            
+            <form v-else @submit.prevent="createCall(call)"
                 class="border border-neutral-200 rounded-md p-4 md:p-5 bg-neutral-50">
                 <div class="grid gap-2 mb-4 grid-cols-2">
                     <div class="col-span-2 mb-3">
@@ -104,7 +110,7 @@ export default {
             call:{
                 phone: "",
                 comment:"",
-                date:"11/02/2025",
+                date: new Date().toISOString().slice(0, 19).replace('T', ' '),
                 companyId:"",
                 incidenceId:""
             }
