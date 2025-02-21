@@ -25,11 +25,11 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2">S.10 ESTÁ REGISTRADO FORMALMENTE CON [AGENCIA DE REGISTRO]</label>
                 <div class="flex justify-center">
                     <label class="inline-flex items-center mr-4">
-                        <input type="radio" class="form-radio" name="S10" value="1">
+                        <input type="radio" class="form-radio" name="S10" value="1" v-model="S10_val">
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="S10" value="2">
+                        <input type="radio" class="form-radio" name="S10" value="2" v-model="S10_val">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
@@ -38,11 +38,11 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2">S.8 ES DE PROPIEDAD TOTAL DEL GOBIERNO CENTRAL, REGIONAL O MUNICIPAL</label>
                 <div class="flex justify-center">
                     <label class="inline-flex items-center mr-4">
-                        <input type="radio" class="form-radio" name="S8" value="1">
+                        <input type="radio" class="form-radio" name="S8" v-model="S8_val" value="1">
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="S8" value="2">
+                        <input type="radio" class="form-radio" name="S8" v-model="S8_val" value="2">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
@@ -51,24 +51,37 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2">S.9 ES UNA COOPERATIVA O COLECTIVO PROPIEDAD DE LOS TRABAJADORES</label>
                 <div class="flex justify-center">
                     <label class="inline-flex items-center mr-4">
-                        <input type="radio" class="form-radio" name="S9" value="1">
+                        <input type="radio" class="form-radio" name="S9" v-model="S9_val" value="1">
                         <span class="ml-2">Sí</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" class="form-radio" name="S9" value="2">
+                        <input type="radio" class="form-radio" name="S9" v-model="S9_val" value="2">
                         <span class="ml-2">No</span>
                     </label>
                 </div>
             </div>
             <div class="mb-4">
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Siguiente
-                </button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Siguiente</button>
             </div>
         </form>
+        <!-- <div>
+            <p>10: {{ S10_val }}</p>
+            <p>9: {{ S8_val }}</p>
+            <p>8: {{ S9_val }}</p>
+        </div> -->
     </div>
 </template>
 
 <script>
-
+export default {
+    data() {
+        return {
+            S10_val: '',
+            S8_val: '',
+            S9_val: '',
+        };
+    },
+    mounted() {
+    },
+}
 </script>

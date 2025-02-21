@@ -3,15 +3,13 @@
         <h1 class="text-4xl font-bold mb-2 text-center">BANCO MUNDIAL</h1>
         <h2 class="text-2xl text-gray-600 text-center mb-5">Cuestionario de selección de la Encuesta Empresarial a nivel de empresa</h2>
         <hr class="mb-5">
-        <!-- <h3 class="text-2xl text-gray-600 text-center">HOJA DE INFORMACIÓN</h3>
-        <h4 class="text-2xl text-gray-600 text-center mb-10">INFORMACIÓN ADQUIRIDA ANTES DEL CUESTIONARIO DE SELECCIÓN:</h4> -->
 
         <form class="w-full max-w-lg mx-auto">
             <div class="mt-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="technicalid">S.1 ID DE LA EMPRESA</label>
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="technicalid" type="text" placeholder="technicalid" disabled/>
+                    id="S1" type="text" disabled/>
             </div>
             <div class="mt-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="info_M">Información de muestreo</label>
