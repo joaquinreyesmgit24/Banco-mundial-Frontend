@@ -1,12 +1,12 @@
 <template>
     <div class="grid grid-cols-1 gap-6 mb-6">
-        
+
         <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
-            <h2 v-if="randomCompany.length==0" class="text-center">
+            <h2 v-if="randomCompany.length == 0" class="text-center">
                 No hay empresas disponibles para contactar
                 <i class="ri-error-warning-fill ml-2"></i>
             </h2>
-            
+
             <form v-else @submit.prevent="createCall(call)"
                 class="border border-neutral-200 rounded-md p-4 md:p-5 bg-neutral-50">
                 <div class="grid gap-2 mb-4 grid-cols-2">
@@ -15,11 +15,13 @@
                             número:</label>
                         <div class="flex">
                             <div class="mr-4">
-                                <input type="radio" name="number" :value="randomCompany.phoneNumberOne" v-model="call.phone">
+                                <input type="radio" name="number" :value="randomCompany.phoneNumberOne"
+                                    v-model="call.phone">
                                 {{ randomCompany.phoneNumberOne }}
                             </div>
                             <div>
-                                <input type="radio" name="number" :value="randomCompany.phoneNumberSecond" v-model="call.phone">
+                                <input type="radio" name="number" :value="randomCompany.phoneNumberSecond"
+                                    v-model="call.phone">
                                 {{ randomCompany.phoneNumberSecond }}
                             </div>
                         </div>
@@ -36,12 +38,13 @@
                             empresa:</label>
                         <input type="text" name="name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                            placeholder="Nombre" disabled  v-model="randomCompany.name"/>
+                            placeholder="Nombre" disabled v-model="randomCompany.name" />
                     </div>
                     <div class="col-span-2 mb-3">
                         <label for="role" class="block mb-2 text-sm font-medium text-gray-900">Incidencia:</label>
                         <select id="role"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" v-model="call.incidenceId">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                            v-model="call.incidenceId">
                             <option value="" disabled selected>
                                 Seleccionar incidencia
                             </option>
@@ -50,20 +53,35 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-span-2 mb-3" v-if="call.incidenceId==2">
-                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">
-                        Comentario:</label>
-                    <textarea name="comentarios" rows="5"
-                        cols="165" v-model="call.comment"></textarea>
+                    <div class="col-span-2 mb-3" v-if="call.incidenceId == 2">
+                        <label for="username" class="block mb-2 text-sm font-medium text-gray-900">
+                            Comentario:</label>
+                        <textarea name="comentarios" rows="5" cols="165" v-model="call.comment"></textarea>
                     </div>
                 </div>
-                <button type="submit" v-if="call.incidenceId==1"
+                <div class="col-span-2 mb-7" v-if="call.incidenceId == 3">
+                    <label for="reschedulingDate" class="block mb-2 text-sm font-medium text-gray-900">Fecha de
+                        reprogramación de llamado:</label>
+                    <input type="date" name="reschedulingDate" id="reschedulingDate"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
+                </div>
+                <div class="col-span-2 mb-7" v-if="call.incidenceId == 3">
+                    <label for="reschedulingDate" class="block mb-2 text-sm font-medium text-gray-900">Hora de
+                        reprogramación de llamado:</label>
+                    <input type="time" name="reschedulingDate" id="reschedulingDate"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
+                </div>
+                <button type="submit" v-if="call.incidenceId == 1"
                     class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
                     Desplegar formulario de contactación
                 </button>
-                <button type="submit" v-if="call.incidenceId==2"
-                        class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
+                <button type="submit" v-if="call.incidenceId == 2"
+                    class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
                     Agregar incidencia
+                </button>
+                <button type="submit" v-if="call.incidenceId == 3"
+                    class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
+                    Reprogramar llamado
                 </button>
                 <table class="min-w-full bg-white border border-gray-300 text-sm text-left">
                     <thead class="bg-gray-50 text-gray-600 uppercase text-xs border-b border-gray-300">
@@ -77,11 +95,11 @@
                     <tbody>
                         <tr v-for="call in calls" :key="call.id" class="border-t border-gray-300">
                             <td class="py-2 px-4 border border-gray-300">{{ call.phone }}</td>
-                            <td class="py-2 px-4 border border-gray-300">{{call.incident.description}}</td>
+                            <td class="py-2 px-4 border border-gray-300">{{ call.incident.description }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ call.comment || 'Sin comentario' }}</td>
-                            <td class="py-2 px-4 border border-gray-300">{{ new Date(call.date).toLocaleDateString() }}</td>
+                            <td class="py-2 px-4 border border-gray-300">{{ new Date(call.date).toLocaleDateString() }}
+                            </td>
                         </tr>
-                    
                     </tbody>
                 </table>
             </form>
@@ -103,16 +121,20 @@ export default {
     },
     data() {
         return {
-            calls:[],
+            calls: [],
             incidents: [],
             randomCompany: "",
             toast: useToast(),
-            call:{
+            call: {
                 phone: "",
-                comment:"",
+                comment: "",
                 date: new Date().toISOString().slice(0, 19).replace('T', ' '),
-                companyId:"",
-                incidenceId:""
+                companyId: "",
+                incidenceId: ""
+            },
+            rescheduled:{
+                date:"",
+                time:""
             }
         }
     },
@@ -121,26 +143,50 @@ export default {
         this.getDataRandomCompany(this.getUserID)
     },
     methods: {
-        createCall(call){
-            GlobalService.createData("/call/create-call", call)
-                    .then((response) => {
-                        this.toast.success(response.data.msg);
-                        console.log(response)
-                        this.calls = response.data.calls
+        createCall(call) {
+            let createCallPromise = GlobalService.createData("/call/create-call", call);
+
+            // Si el incidenceId es 3, también creamos la reprogramación
+            if (call.incidenceId === 3) {
+                let createRescheduledPromise = GlobalService.createData("/call/create-rescheduled", rescheduled);
+
+                // Ejecutamos ambas peticiones y solo consideramos éxito si ambas funcionan
+                Promise.all([createCallPromise, createRescheduledPromise])
+                    .then(([callResponse, rescheduledResponse]) => {
+                        this.toast.success("Llamada y reprogramación creadas correctamente");
+                        this.calls = callResponse.data.calls; // Actualizamos con la data de llamadas
                     })
                     .catch((e) => {
-                        let errors = e.response.data.errors;
-                        let error = e.response.data.error;
-                        console.log(errors)
+                        let errors = e.response?.data?.errors;
+                        let error = e.response?.data?.error || "Error desconocido";
+                        console.error(errors || error);
+
                         if (errors) {
-                            errors.forEach((error_element) => {
-                                this.toast.error(error_element.msg);
-                            });
+                            errors.forEach((error_element) => this.toast.error(error_element.msg));
                         } else {
                             this.toast.error(error);
                         }
                     });
-        },  
+            } else {
+                // Si no es incidenceId 3, solo se crea la llamada normal
+                createCallPromise
+                    .then((response) => {
+                        this.toast.success(response.data.msg);
+                        this.calls = response.data.calls;
+                    })
+                    .catch((e) => {
+                        let errors = e.response?.data?.errors;
+                        let error = e.response?.data?.error || "Error desconocido";
+                        console.error(errors || error);
+
+                        if (errors) {
+                            errors.forEach((error_element) => this.toast.error(error_element.msg));
+                        } else {
+                            this.toast.error(error);
+                        }
+                    });
+            }
+        },
         getDataIncidents() {
             GlobalService.getData("/call/list-incidents")
                 .then((response) => {
@@ -153,16 +199,16 @@ export default {
         getDataRandomCompany(userId) {
             GlobalService.getData(`/call/get-random-company/${userId}`)
                 .then((response) => {
-                    this.randomCompany=response
-                    this.call.companyId= response.id
-                    this.call.phone=response.phoneNumberOne
+                    this.randomCompany = response
+                    this.call.companyId = response.id
+                    this.call.phone = response.phoneNumberOne
                     this.getDataCalls(response.id)
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
-        getDataCalls(companyId){
+        getDataCalls(companyId) {
             GlobalService.getData(`/call/list-calls/${companyId}`)
                 .then((response) => {
                     this.calls = response.calls

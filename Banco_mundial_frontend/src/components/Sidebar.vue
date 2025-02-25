@@ -23,8 +23,32 @@
                 </router-link>
             </li>
             <li class="mb-1" v-if="userRol=='Administrador'">
-                <router-link to="/quotas" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                <router-link to="/calls" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                    <i class="ri-timeline-view mr-3"></i>
+                    <span class="text-sm">Llamadas</span>
+                </router-link>
+            </li>
+            <li class="mb-1" v-if="userRol=='Administrador'">
+                <router-link to="/contact" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                    <i class="ri-side-bar-line mr-3"></i>
+                    <span class="text-sm">Incidencias</span>
+                </router-link>
+            </li>
+            <li class="mb-1" v-if="userRol=='Administrador'">
+                <router-link to="/contact" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                    <i class="ri-calendar-schedule-fill mr-3"></i>
+                    <span class="text-sm">Reprogramaciones</span>
+                </router-link>
+            </li>
+            <li class="mb-1" v-if="userRol=='Administrador'">
+                <router-link to="/contact" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
                     <i class="ri-file-list-line mr-3"></i>
+                    <span class="text-sm">Agendas</span>
+                </router-link>
+            </li>
+            <li class="mb-1" v-if="userRol=='Administrador'">
+                <router-link to="/quotas" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                    <i class="ri-order-play-line mr-3"></i>
                     <span class="text-sm">Cuotas</span>
                 </router-link>
             </li>

@@ -2,6 +2,8 @@ const statistics = ()=>import('./views/Statistics.vue')
 const users = ()=>import('./views/Users.vue')
 const companies = ()=>import('./views/Companies.vue')
 const contact = ()=>import('./views/Contact.vue')
+const calls = ()=>import('./views/Calls.vue')
+
 
 //Survey
 const survey_P00 = ()=>import('./views/Survey/Page_00.vue')
@@ -73,6 +75,16 @@ export const PrivateRoutes = [
         meta: {
             title: 'quotas',
             menu: 'quotas',
+            requiredRole: ['Administrador']
+        }
+    },
+    {
+        path: '/calls',
+        component: calls,
+        name: 'calls',
+        meta: {
+            title: 'calls',
+            menu: 'calls',
             requiredRole: ['Administrador']
         }
     },
