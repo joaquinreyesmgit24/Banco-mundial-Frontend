@@ -60,7 +60,7 @@ export const PrivateRoutes = [
         }
     },
     {
-        path: '/contact',
+        path: '/contact/:companyId?',
         component: contact,
         name: 'contact',
         meta: {

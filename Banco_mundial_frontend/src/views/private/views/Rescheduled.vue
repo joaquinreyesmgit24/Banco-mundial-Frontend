@@ -8,7 +8,7 @@
                     <span v-if="props.column.field == 'acciones'">
                         <button type="button"
                             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                            @click="goToContact(props.row)">
+                            @click="goToContact(props.row.company.id)">
                             Contactar
                         </button>
                     </span>
@@ -93,7 +93,6 @@ export default {
         getDataRescheduledByUser(userId) {
                 GlobalService.getData(`/call/list-rescheduled-by-user/${userId}`)
                     .then((response) => {
-                        console.log(response)
                         this.rows = response.rescheduleds.map((rescheduled) => ({
                             id: rescheduled.id,
                             date:  dayjs(rescheduled.date).format("DD-MM-YYYY HH:mm:ss"),
@@ -106,8 +105,8 @@ export default {
                         console.log(error);
                     });
             },
-        goToContact(row) {
-            this.$router.push({ name: 'contact', params: { rowData: row } });
+        goToContact(companyId) {
+            this.$router.push({ name: 'contact', params: { companyId: companyId} });
         }
     },
     computed: {

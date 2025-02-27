@@ -3,10 +3,10 @@
 
         <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
             <h2 v-if="randomCompany.length == 0" class="text-center">
-                No hay empresas disponibles para contactar
-                <i class="ri-error-warning-fill ml-2"></i>
+                <span v-if="this.$route.params.companyId">La empresa que se intenta recontactar no tiene llamados disponibles</span>
+                <span v-else>No hay empresas disponibles para contactar</span>
+            <i class="ri-error-warning-fill ml-2"></i>
             </h2>
-
             <form v-else @submit.prevent="createCall(call)"
                 class="border border-neutral-200 rounded-md p-4 md:p-5 bg-neutral-50">
                 <div class="grid gap-2 mb-4 grid-cols-2">
@@ -140,7 +140,12 @@ export default {
     },
     mounted() {
         this.getDataIncidents()
-        this.getDataRandomCompany(this.getUserID)
+        if(this.$route.params.companyId){
+            this.getSelectCompanyToCallById(this.$route.params.companyId)
+        }
+        else{
+            this.getDataRandomCompany(this.getUserID)
+        }
     },
     methods: {
         createCall(call) {
@@ -174,6 +179,19 @@ export default {
         getDataRandomCompany(userId) {
             GlobalService.getData(`/call/get-random-company/${userId}`)
                 .then((response) => {
+                    this.randomCompany = response
+                    this.call.companyId = response.id
+                    this.call.phone = response.phoneNumberOne
+                    this.getDataCalls(response.id)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        getSelectCompanyToCallById(companyId){
+            GlobalService.getData(`/call/get-select-company-to-call-by-id/${companyId}`)
+                .then((response) => {
+                    console.log(response)
                     this.randomCompany = response
                     this.call.companyId = response.id
                     this.call.phone = response.phoneNumberOne
