@@ -63,7 +63,7 @@
                     <label for="reschedulingDate" class="block mb-2 text-sm font-medium text-gray-900">Fecha de
                         reprogramación de llamado:</label>
                     <input type="date" name="reschedulingDate" id="reschedulingDate"
-                       v-model="call.rescheduled.date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
+                    v-model="call.rescheduled.date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
                 </div>
                 <div class="col-span-2 mb-7" v-if="call.incidenceId == 3">
                     <label for="reschedulingTime" class="block mb-2 text-sm font-medium text-gray-900">Hora de
@@ -147,7 +147,7 @@ export default {
             GlobalService.createData("/call/create-call", call)
                 .then((response) => {
                     this.toast.success(response.data.msg);
-                    this.calls = response.calls
+                    this.calls = response.data.calls
                 })
                 .catch((e) => {
                     let errors = e.response.data.errors;

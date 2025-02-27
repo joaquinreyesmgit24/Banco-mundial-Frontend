@@ -3,6 +3,7 @@ const users = ()=>import('./views/Users.vue')
 const companies = ()=>import('./views/Companies.vue')
 const contact = ()=>import('./views/Contact.vue')
 const calls = ()=>import('./views/Calls.vue')
+const rescheduled = ()=>import('./views/Rescheduled.vue')
 
 
 //Survey
@@ -85,6 +86,16 @@ export const PrivateRoutes = [
         meta: {
             title: 'calls',
             menu: 'calls',
+            requiredRole: ['Administrador']
+        }
+    },
+    {
+        path: '/rescheduled',
+        component: rescheduled,
+        name: 'rescheduled',
+        meta: {
+            title: 'rescheduled',
+            menu: 'rescheduled',
             requiredRole: ['Administrador']
         }
     },
