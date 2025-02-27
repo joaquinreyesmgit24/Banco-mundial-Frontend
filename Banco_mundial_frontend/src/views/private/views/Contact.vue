@@ -63,13 +63,13 @@
                     <label for="reschedulingDate" class="block mb-2 text-sm font-medium text-gray-900">Fecha de
                         reprogramación de llamado:</label>
                     <input type="date" name="reschedulingDate" id="reschedulingDate"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
+                       v-model="call.rescheduled.date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
                 </div>
                 <div class="col-span-2 mb-7" v-if="call.incidenceId == 3">
-                    <label for="reschedulingDate" class="block mb-2 text-sm font-medium text-gray-900">Hora de
+                    <label for="reschedulingTime" class="block mb-2 text-sm font-medium text-gray-900">Hora de
                         reprogramación de llamado:</label>
-                    <input type="time" name="reschedulingDate" id="reschedulingDate"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
+                    <input type="time" name="reschedulingTime" id="reschedulingTime"
+                    v-model="call.rescheduled.time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
                 </div>
                 <button type="submit" v-if="call.incidenceId == 1"
                     class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
@@ -130,12 +130,12 @@ export default {
                 comment: "",
                 date: new Date().toISOString().slice(0, 19).replace('T', ' '),
                 companyId: "",
-                incidenceId: ""
+                incidenceId: "",
+                rescheduled: {
+                    date: "",
+                    time: ""
+                }
             },
-            rescheduled:{
-                date:"",
-                time:""
-            }
         }
     },
     mounted() {
@@ -144,48 +144,23 @@ export default {
     },
     methods: {
         createCall(call) {
-            let createCallPromise = GlobalService.createData("/call/create-call", call);
-
-            // Si el incidenceId es 3, también creamos la reprogramación
-            if (call.incidenceId === 3) {
-                let createRescheduledPromise = GlobalService.createData("/call/create-rescheduled", rescheduled);
-
-                // Ejecutamos ambas peticiones y solo consideramos éxito si ambas funcionan
-                Promise.all([createCallPromise, createRescheduledPromise])
-                    .then(([callResponse, rescheduledResponse]) => {
-                        this.toast.success("Llamada y reprogramación creadas correctamente");
-                        this.calls = callResponse.data.calls; // Actualizamos con la data de llamadas
-                    })
-                    .catch((e) => {
-                        let errors = e.response?.data?.errors;
-                        let error = e.response?.data?.error || "Error desconocido";
-                        console.error(errors || error);
-
-                        if (errors) {
-                            errors.forEach((error_element) => this.toast.error(error_element.msg));
-                        } else {
-                            this.toast.error(error);
-                        }
-                    });
-            } else {
-                // Si no es incidenceId 3, solo se crea la llamada normal
-                createCallPromise
-                    .then((response) => {
-                        this.toast.success(response.data.msg);
-                        this.calls = response.data.calls;
-                    })
-                    .catch((e) => {
-                        let errors = e.response?.data?.errors;
-                        let error = e.response?.data?.error || "Error desconocido";
-                        console.error(errors || error);
-
-                        if (errors) {
-                            errors.forEach((error_element) => this.toast.error(error_element.msg));
-                        } else {
-                            this.toast.error(error);
-                        }
-                    });
-            }
+            GlobalService.createData("/call/create-call", call)
+                .then((response) => {
+                    this.toast.success(response.data.msg);
+                    this.calls = response.calls
+                })
+                .catch((e) => {
+                    let errors = e.response.data.errors;
+                    let error = e.response.data.error;
+                    console.log(errors)
+                    if (errors) {
+                        errors.forEach((error_element) => {
+                            this.toast.error(error_element.msg);
+                        });
+                    } else {
+                        this.toast.error(error);
+                    }
+                })
         },
         getDataIncidents() {
             GlobalService.getData("/call/list-incidents")
