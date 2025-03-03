@@ -33,6 +33,17 @@ export default {
                 .catch((err) => reject(err))
         }))
     },
+    createDataFile(url,form){
+        return new Promise(((resolve, reject) => {
+          http.post(`${url}`,form,{
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          })
+            .then((response) => resolve(response))
+            .catch((err) => reject(err))
+        }))
+      },
     setDataImage(url, id, form) {
         return new Promise(((resolve, reject) => {
             http.put(`${url}/${id}`, form, {
