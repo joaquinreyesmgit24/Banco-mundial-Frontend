@@ -3,9 +3,10 @@
 
         <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
             <h2 v-if="randomCompany.length == 0" class="text-center">
-                <span v-if="this.$route.params.companyId">La empresa que se intenta recontactar no tiene llamados disponibles</span>
+                <span v-if="this.$route.params.companyId">La empresa que se intenta recontactar no tiene llamados
+                    disponibles</span>
                 <span v-else>No hay empresas disponibles para contactar</span>
-            <i class="ri-error-warning-fill ml-2"></i>
+                <i class="ri-error-warning-fill ml-2"></i>
             </h2>
             <form v-else @submit.prevent="createCall(call)"
                 class="border border-neutral-200 rounded-md p-4 md:p-5 bg-neutral-50">
@@ -62,16 +63,16 @@
                 <div class="col-span-2 mb-7" v-if="call.incidenceId == 3">
                     <label for="reschedulingDate" class="block mb-2 text-sm font-medium text-gray-900">Fecha de
                         reprogramación de llamado:</label>
-                    <input type="date" name="reschedulingDate" id="reschedulingDate"
-                    v-model="call.rescheduled.date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
+                    <input type="date" name="reschedulingDate" id="reschedulingDate" v-model="call.rescheduled.date"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
                 </div>
                 <div class="col-span-2 mb-7" v-if="call.incidenceId == 3">
                     <label for="reschedulingTime" class="block mb-2 text-sm font-medium text-gray-900">Hora de
                         reprogramación de llamado:</label>
-                    <input type="time" name="reschedulingTime" id="reschedulingTime"
-                    v-model="call.rescheduled.time" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
+                    <input type="time" name="reschedulingTime" id="reschedulingTime" v-model="call.rescheduled.time"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
                 </div>
-                <button type="submit" v-if="call.incidenceId == 1"
+                <button type="submit" v-if="call.incidenceId == 1" @click="openModal"
                     class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
                     Desplegar formulario de contactación
                 </button>
@@ -103,6 +104,26 @@
                     </tbody>
                 </table>
             </form>
+        </div>
+        <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="bg-white p-6 rounded-md w-3/4 max-h-[80vh] overflow-auto">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Encuesta</h2>
+                    <button @click="closeModal" class="text-gray-500 hover:text-gray-800">✖</button>
+                </div>
+                <router-view></router-view>
+                <div class="flex justify-between mt-4">
+                    <button v-if="currentPage > 1" @click="prevPage"
+                        class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
+                        Anterior
+                    </button>
+
+                    <button v-if="currentPage < 13" @click="nextPage"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ml-auto">
+                        Siguiente
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -140,14 +161,34 @@ export default {
     },
     mounted() {
         this.getDataIncidents()
-        if(this.$route.params.companyId){
+        if (this.$route.params.companyId) {
             this.getSelectCompanyToCallById(this.$route.params.companyId)
         }
-        else{
+        else {
             this.getDataRandomCompany(this.getUserID)
         }
     },
     methods: {
+        openModal() {
+            this.isModalOpen = true;
+            this.$router.push({ path: "/contact/survey/1" }); // Usa una ruta absoluta
+        },
+        closeModal() {
+            this.isModalOpen = false;
+            this.$router.push({ path: "/contact" }); // Usa una ruta absoluta
+        },
+        nextPage() {
+            let nextPage = this.currentPage + 1;
+            if (nextPage <= 13) {
+                this.$router.push({ path: `/contact/survey/${nextPage}` });
+            }
+        },
+        prevPage() {
+            let prevPage = this.currentPage - 1;
+            if (prevPage >= 1) {
+                this.$router.push({ path: `/contact/survey/${prevPage}` });
+            }
+        },
         createCall(call) {
             GlobalService.createData("/call/create-call", call)
                 .then((response) => {
@@ -188,7 +229,7 @@ export default {
                     console.log(error);
                 });
         },
-        getSelectCompanyToCallById(companyId){
+        getSelectCompanyToCallById(companyId) {
             GlobalService.getData(`/call/get-select-company-to-call-by-id/${companyId}`)
                 .then((response) => {
                     console.log(response)
@@ -213,7 +254,11 @@ export default {
     },
     computed: {
         ...mapGetters(["getUserID"]),
-    }
+        currentPage() {
+            console.log(this.$route.params.page)
+            return Number(this.$route.params.page) || 1;
+        }
+    },
 };
 </script>
 
