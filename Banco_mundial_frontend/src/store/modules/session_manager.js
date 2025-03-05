@@ -10,6 +10,26 @@ const state ={
             id:null,
             name:null
         }
+    },
+    survey:{
+        Q_S10:"",
+        Q_S8:"",
+        Q_S9:"",
+        Q_S4:"",
+        Q_S7:"",
+        Q_A7:"",
+        Q_A7A:"",
+        A7A_cant_val:"",
+        Q_A7B:"",
+        Q_A11:"",
+        Q_A7C:"",
+        Q_A7D_address:"",
+        Q_A7D_estab_name:"",
+        Q_A9:"",
+        Q_S12_date:"",
+        Q_S12_hour:"",
+        Q_S12_inter_name:"",
+        Q_S12_inter_cargo:"",
     }
 };
 const getters = {
@@ -48,6 +68,13 @@ const getters = {
             state.auth_token = localStorage.getItem('auth_token')
         }
         return state.auth_token
+    },
+    getSurvey(state){
+        console.log(state.survey)
+        if(!state.survey){
+            state.survey = JSON.parse(localStorage.getItem('survey'))
+        }
+        return state.survey
     }
 }
 const actions = {
@@ -85,7 +112,10 @@ const actions = {
                 reject(error)
             })
         });
-    }
+    },
+    updateStateSurvey({ commit }, payload){
+        commit('setSurveyInfo', payload)
+    },
 }
 const mutations = {
     setUserInfo(state, data){
@@ -111,6 +141,13 @@ const mutations = {
         state.auth_token = null
         localStorage.removeItem('auth_token')
         localStorage.removeItem('user')
+    },
+    setSurveyInfo(state, data) {
+        Object.keys(data.survey).forEach((key) => {
+            if (state.survey.hasOwnProperty(key)) {
+                state.survey[key] = data.survey[key];
+            }
+        });
     }
 }
 

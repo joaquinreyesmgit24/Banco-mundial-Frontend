@@ -5,23 +5,28 @@
             <label class="block text-gray-700 text-sm mb-2">Número de trabajadores:</label>
             <div class="flex items-center">
                 <!-- <label class="block text-gray-700 text-sm mb-2">Número de trabajadores:</label> -->
-                <input type="number" id="S7" class="form-input mt-1 block w-full" placeholder="0" v-model="S7_val"/>
-            </div>
-            <div class="flex justify-center">
-                <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Siguiente</button>
+                <input type="number" id="S7" class="form-input mt-1 block w-full" placeholder="0" v-model="survey.Q_S7"/>
             </div>
         </form>
     </div>
 </template>
 
 <script>
+import { mapActions,mapGetters } from "vuex";
 export default {
-    data() {
-        return {
-            S7_val: '',
-        };
+    computed: {
+        ...mapGetters(["getSurvey"]),
+        survey: {
+            get() {
+                return this.getSurvey; // Obtiene el estado desde Vuex
+            },
+            set(value) {
+                this.updateStateSurvey(value); // Lo actualiza en Vuex
+            },
+        },
     },
-    mounted() {
+    methods: {
+        ...mapActions(["updateStateSurvey"]),
     },
 }
 </script>

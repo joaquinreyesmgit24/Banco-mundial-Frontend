@@ -6,40 +6,40 @@
             
             <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="fechaC">FECHA DE LA CITA:</label>
-                <input type="date" id="fechaC" v-model="fechaC" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="date" id="fechaC" v-model="survey.Q_S12_date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="horaC">HORA:</label>
-                <input type="time" id="horaC" v-model="horaC" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <input type="time" id="horaC" v-model="survey.Q_S12_hour" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
             <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="nombreE">NOMBRE DEL ENTREVISTADO:</label>
-                <input type="text" id="nombreE" v-model="nombreE" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nombre">
+                <input type="text" id="nombreE" v-model="survey.Q_S12_inter_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Nombre">
             </div>
             <div>
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="cargoE">CARGO DEL ENTREVISTADO:</label>
-                <input type="text" id="cargoE" v-model="cargoE" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Cargo">
-            </div>
-
-            <div class="flex justify-center">
-                <button type="submit" class="mt-4 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Siguiente</button>
+                <input type="text" id="cargoE" v-model="survey.Q_S12_inter_cargo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Cargo">
             </div>
         </form>
-        <!-- <p>fecha: {{ fechaC }} / hora: {{ horaC }} / nom: {{ nombreE }} / cargo: {{ cargoE }}</p> -->
     </div>
 </template>
 
 <script>
+import { mapActions,mapGetters } from "vuex";
 export default {
-    data() {
-        return {
-            fechaC: '',
-            horaC: '',
-            nombreE: '',
-            cargoE: '',
-        };
+    computed: {
+        ...mapGetters(["getSurvey"]),
+        survey: {
+            get() {
+                return this.getSurvey; // Obtiene el estado desde Vuex
+            },
+            set(value) {
+                this.updateStateSurvey(value); // Lo actualiza en Vuex
+            },
+        },
     },
-    mounted() {
+    methods: {
+        ...mapActions(["updateStateSurvey"]),
     },
 }
 </script>

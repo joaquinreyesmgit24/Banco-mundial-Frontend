@@ -11,5 +11,21 @@
 </template>
 
 <script>
-
+import { mapActions,mapGetters } from "vuex";
+export default {
+    computed: {
+        ...mapGetters(["getSurvey"]),
+        survey: {
+            get() {
+                return this.getSurvey; // Obtiene el estado desde Vuex
+            },
+            set(value) {
+                this.updateStateSurvey(value); // Lo actualiza en Vuex
+            },
+        },
+    },
+    methods: {
+        ...mapActions(["updateStateSurvey"]),
+    },
+}
 </script>

@@ -232,7 +232,6 @@ export default {
         getSelectCompanyToCallById(companyId) {
             GlobalService.getData(`/call/get-select-company-to-call-by-id/${companyId}`)
                 .then((response) => {
-                    console.log(response)
                     this.randomCompany = response
                     this.call.companyId = response.id
                     this.call.phone = response.phoneNumberOne

@@ -77,7 +77,6 @@ export const PrivateRoutes = [
                         // Función reactiva para cambiar el componente cuando cambia la URL
                         watchEffect(() => {
                             const pageNum = Number(route.params.page) || 1;
-                            console.log("Cargando página:", pageNum);
                             currentComponent.value = surveyComponents[pageNum] || surveyComponents[1];
                         });
 
