@@ -66,6 +66,7 @@ export const PrivateRoutes = [
     {
         path: '/contact/:companyId?',
         component: contact,
+        props:true,
         children: [
             {
                 path: 'survey/:page',
@@ -73,13 +74,13 @@ export const PrivateRoutes = [
                     setup() {
                         const route = useRoute();
                         const currentComponent = ref(surveyComponents[1]); // Estado reactivo del componente
-
+    
                         // Función reactiva para cambiar el componente cuando cambia la URL
                         watchEffect(() => {
                             const pageNum = Number(route.params.page) || 1;
                             currentComponent.value = surveyComponents[pageNum] || surveyComponents[1];
                         });
-
+    
                         return () => h(currentComponent.value);
                     }
                 }
@@ -90,7 +91,7 @@ export const PrivateRoutes = [
             menu: 'contact',
             requiredRole: ['Administrador']
         }
-    },
+    },    
     {
         path: '/quotas',
         component: quotas,

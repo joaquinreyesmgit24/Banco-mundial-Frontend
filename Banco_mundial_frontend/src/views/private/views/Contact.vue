@@ -111,7 +111,7 @@
                     <h2 class="text-lg font-semibold">Encuesta</h2>
                     <button @click="closeModal" class="text-gray-500 hover:text-gray-800">✖</button>
                 </div>
-                <router-view></router-view>
+                <router-view :buttonNext="buttonNext" @update:buttonNext="buttonNext = $event" :randomCompany="randomCompany"></router-view>
                 <div class="flex justify-between mt-4">
                     <button v-if="currentPage > 1" @click="prevPage"
                         class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
@@ -119,7 +119,7 @@
                     </button>
 
                     <button v-if="currentPage < 13" @click="nextPage"
-                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ml-auto">
+                    :disabled="buttonNext" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ml-auto">
                         Siguiente
                     </button>
                 </div>
@@ -146,6 +146,7 @@ export default {
             incidents: [],
             randomCompany: "",
             toast: useToast(),
+            buttonNext:false,
             call: {
                 phone: "",
                 comment: "",

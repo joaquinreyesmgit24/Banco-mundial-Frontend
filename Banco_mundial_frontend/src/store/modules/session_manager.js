@@ -12,6 +12,7 @@ const state ={
         }
     },
     survey:{
+        companyId:"",
         Q_S10:"",
         Q_S8:"",
         Q_S9:"",
