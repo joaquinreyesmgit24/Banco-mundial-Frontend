@@ -20,6 +20,17 @@
 <script>
 import { mapActions,mapGetters } from "vuex";
 export default {
+    props: {
+        buttonNext: Boolean
+    },
+    data() {
+        return {
+            localButtonNext: this.buttonNext // Creamos una variable local basada en el prop
+        };
+    },
+    mounted() {
+        this.$emit('update:buttonNext', true);
+    },
     computed: {
         ...mapGetters(["getSurvey"]),
         survey: {
@@ -30,6 +41,14 @@ export default {
                 this.updateStateSurvey(value); // Lo actualiza en Vuex
             },
         },
+    },
+    watch: {
+        // Escucha cambios en S9 y actualiza buttonNext
+        "survey.Q_A7A"(newValue) {
+            if (newValue != "") {
+                this.$emit("update:buttonNext", false);
+            }
+        }
     },
     methods: {
         ...mapActions(["updateStateSurvey"]),

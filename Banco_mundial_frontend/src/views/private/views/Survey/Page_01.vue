@@ -85,9 +85,6 @@ export default {
     props: {
         randomCompany: Object
     },
-    mounted() {
-        console.log(this.randomCompany); // Para verificar que lo recibe correctamente
-    },
     computed: {
         ...mapGetters(["getSurvey"]),
         survey: {

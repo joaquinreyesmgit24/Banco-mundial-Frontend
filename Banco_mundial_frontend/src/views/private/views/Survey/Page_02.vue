@@ -91,39 +91,43 @@ export default {
         };
     },
     mounted() {
-        if(this.survey.Q_S9!=""){
-            this.$emit('update:buttonNext', false);
-        }else{
-            this.$emit('update:buttonNext', true);
-        }
-    },
-    beforeUnmount() { // O "beforeDestroy" en Vue 2
-        this.$emit('update:buttonNext', false);
+        this.$emit('update:buttonNext', true);
     },
     computed: {
         ...mapGetters(["getSurvey"]),
         survey: {
             get() {
-                return this.getSurvey; // Obtiene el estado desde Vuex
+                return this.getSurvey;
             },
             set(value) {
-                this.updateStateSurvey(value); // Lo actualiza en Vuex
+                this.updateStateSurvey(value);
             },
         },
-        // Computed para deshabilitar S8 si S10 es "No"
         isS8Disabled() {
-            return this.survey.Q_S10 === ""; // Si S10 es "No" (2), deshabilita S8
+            return this.survey.Q_S10 === "";
         },
-        // Computed para deshabilitar S9 si S8 es "No"
         isS9Disabled() {
-            return this.survey.Q_S8 === ""; // Si S8 es "No" (2), deshabilita S9
+            return this.survey.Q_S8 === "";
         },
     },
     watch: {
-        // Escucha cambios en S9 y actualiza buttonNext
+        "survey.Q_S10"(newValue) {
+            if (newValue == 2) {
+                this.$router.push({ path: "/contact/survey/13" });
+            }
+        },
+        "survey.Q_S8"(newValue) {
+            if (newValue == 1) {
+                this.$router.push({ path: "/contact/survey/13" });
+            }
+        },
         "survey.Q_S9"(newValue) {
-            if (newValue!="") {
+            if (newValue != "") {
+                if (newValue == 1) {
+                    this.$router.push({ path: "/contact/survey/13" });
+                }
                 this.$emit("update:buttonNext", false);
+
             }
         }
     },

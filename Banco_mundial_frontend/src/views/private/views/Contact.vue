@@ -113,13 +113,8 @@
                 </div>
                 <router-view :buttonNext="buttonNext" @update:buttonNext="buttonNext = $event" :randomCompany="randomCompany"></router-view>
                 <div class="flex justify-between mt-4">
-                    <button v-if="currentPage > 1" @click="prevPage"
-                        class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded">
-                        Anterior
-                    </button>
-
-                    <button v-if="currentPage < 13" @click="nextPage"
-                    :disabled="buttonNext" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ml-auto">
+                    <button v-if="currentPage < 13" @click="nextPage" :disabled="buttonNext"
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ml-auto">
                         Siguiente
                     </button>
                 </div>
@@ -146,7 +141,7 @@ export default {
             incidents: [],
             randomCompany: "",
             toast: useToast(),
-            buttonNext:false,
+            buttonNext: false,
             call: {
                 phone: "",
                 comment: "",
@@ -181,13 +176,11 @@ export default {
         nextPage() {
             let nextPage = this.currentPage + 1;
             if (nextPage <= 13) {
-                this.$router.push({ path: `/contact/survey/${nextPage}` });
-            }
-        },
-        prevPage() {
-            let prevPage = this.currentPage - 1;
-            if (prevPage >= 1) {
-                this.$router.push({ path: `/contact/survey/${prevPage}` });
+                if (this.survey.Q_A7D_estab_name!="") {
+                    this.$router.push({ path: "/contact/survey/12" });
+                } else {
+                    this.$router.push({ path: `/contact/survey/${nextPage}` });
+                }
             }
         },
         createCall(call) {
@@ -253,9 +246,16 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(["getUserID"]),
+        ...mapGetters(["getUserID", "getSurvey"]),
+        survey: {
+            get() {
+                return this.getSurvey; // Obtiene el estado desde Vuex
+            },
+            set(value) {
+                this.updateStateSurvey(value); // Lo actualiza en Vuex
+            },
+        },
         currentPage() {
-            console.log(this.$route.params.page)
             return Number(this.$route.params.page) || 1;
         }
     },

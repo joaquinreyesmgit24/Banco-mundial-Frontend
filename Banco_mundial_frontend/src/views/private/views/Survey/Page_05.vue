@@ -1,13 +1,17 @@
 <template>
     <div class="flex justify-center">
         <form class="space-y-4 text-center">
-            <label class="block text-gray-700 text-sm font-bold mb-2">A.7 ¿Es este establecimiento parte de una empresa de múltiples establecimientos? (es decir, una empresa con varios establecimientos, cada uno con su propia ubicación, administración, actividad y estados financieros).</label>
+            <label class="block text-gray-700 text-sm font-bold mb-2">A.7 ¿Es este establecimiento parte de una empresa
+                de múltiples establecimientos? (es decir, una empresa con varios establecimientos, cada uno con su
+                propia ubicación, administración, actividad y estados financieros).</label>
             <div class="flex items-center">
-                <input id="Si" name="A7" type="radio" value="1" v-model="survey.Q_A7" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                <input id="Si" name="A7" type="radio" value="1" v-model="survey.Q_A7"
+                    class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                 <label for="Si" class="ml-3 block text-sm font-medium text-gray-700">Sí</label>
             </div>
             <div class="flex items-center">
-                <input id="No" name="A7" type="radio" value="2" v-model="survey.Q_A7" class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                <input id="No" name="A7" type="radio" value="2" v-model="survey.Q_A7"
+                    class="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500">
                 <label for="No" class="ml-3 block text-sm font-medium text-gray-700">No</label>
             </div>
         </form>
@@ -15,8 +19,19 @@
 </template>
 
 <script>
-import { mapActions,mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
+    props: {
+        buttonNext: Boolean
+    },
+    data() {
+        return {
+            localButtonNext: this.buttonNext // Creamos una variable local basada en el prop
+        };
+    },
+    mounted() {
+        this.$emit('update:buttonNext', true);
+    },
     computed: {
         ...mapGetters(["getSurvey"]),
         survey: {
@@ -27,6 +42,17 @@ export default {
                 this.updateStateSurvey(value); // Lo actualiza en Vuex
             },
         },
+    },
+    watch: {
+        // Escucha cambios en S9 y actualiza buttonNext
+        "survey.Q_A7"(newValue) {
+            if (newValue != "") {
+                if (newValue == 2) {
+                    this.$router.push({ path: "/contact/survey/12" });
+                }
+                this.$emit("update:buttonNext", false);
+            }
+        }
     },
     methods: {
         ...mapActions(["updateStateSurvey"]),
