@@ -16,7 +16,7 @@
                     <span class="text-sm">Empresas</span>
                 </router-link>
             </li>
-            <li class="mb-1" v-if="userRol=='Administrador'">
+            <li class="mb-1" v-if="userRol=='Contactador'">
                 <router-link to="/contact" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
                     <i class="ri-phone-fill mr-3"></i>
                     <span class="text-sm">Contactar</span>
@@ -28,7 +28,7 @@
                     <span class="text-sm">Llamadas</span>
                 </router-link>
             </li>
-            <li class="mb-1" v-if="userRol=='Administrador'">
+            <li class="mb-1" v-if="userRol=='Contactador'">
                 <router-link to="/rescheduled" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
                     <i class="ri-calendar-schedule-fill mr-3"></i>
                     <span class="text-sm">Reprogramaciones</span>

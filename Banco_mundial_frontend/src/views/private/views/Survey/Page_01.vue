@@ -10,7 +10,7 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="technicalid">S.1 ID DE LA EMPRESA</label>
                 <input
                     class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="S1" type="text" disabled v-model="survey.companyId" />
+                    id="S1" type="text" disabled v-model="survey.code" />
             </div>
             <div class="mt-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="info_M">Información de muestreo</label>
@@ -102,7 +102,8 @@ export default {
     watch: {
     randomCompany: {
         handler(newVal) {
-            this.survey.companyId = newVal.code;
+            this.survey.companyId = newVal.id;
+            this.survey.code = newVal.code;
         },
         deep: true,
         immediate: true

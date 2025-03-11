@@ -66,6 +66,7 @@ export const PrivateRoutes = [
     {
         path: '/contact/:companyId?',
         component: contact,
+        name:'contact',
         props:true,
         children: [
             {
@@ -89,7 +90,7 @@ export const PrivateRoutes = [
         meta: {
             title: 'contact',
             menu: 'contact',
-            requiredRole: ['Administrador']
+            requiredRole: ['Contactador']
         }
     },    
     {
@@ -119,7 +120,7 @@ export const PrivateRoutes = [
         meta: {
             title: 'rescheduled',
             menu: 'rescheduled',
-            requiredRole: ['Administrador']
+            requiredRole: ['Contactador']
         }
     },
 ]

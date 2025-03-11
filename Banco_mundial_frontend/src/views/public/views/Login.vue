@@ -55,11 +55,11 @@
           this.loginUser(user)
             .then((response) => {
               if (response.status == 200) {
-                if(response.data.user.role.name=='Analista'){
-                  this.$router.push({ name: "reports" });
+                if(response.data.user.role.name=='Contactador'){
+                  this.$router.push({ name: "contact" });
                 }
                 else{
-                  this.$router.push({ name: "statistics" });
+                  this.$router.push({ name: "users" });
                 }
               }
             })
