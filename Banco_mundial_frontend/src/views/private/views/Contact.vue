@@ -145,7 +145,7 @@ export default {
             call: {
                 phone: "",
                 comment: "",
-                date: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                date:new Date().toLocaleString("sv-SE", { timeZone: "America/Santiago" }).replace("T", " "), 
                 companyId: "",
                 incidenceId: "",
                 rescheduled: {
