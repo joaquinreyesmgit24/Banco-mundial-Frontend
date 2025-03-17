@@ -255,6 +255,13 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Correo de la empresa" v-model.trim="editedCompany.emailAddress" />
                                 </div>
+                                <div class="col-span-2">
+                                    <label for="web"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Sitio web:</label>
+                                    <input type="text" name="web" id="web"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Sitio web de la empresa" v-model.trim="editedCompany.web" />
+                                </div>
                                 <div class="col-span-1">
                                     <label for="sampleSector"
                                         class="block mb-2 text-sm font-medium text-gray-900">Sector de la
@@ -483,6 +490,13 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Correo de la empresa" v-model.trim="createdCompany.emailAddress" />
                                 </div>
+                                <div class="col-span-2">
+                                    <label for="web"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Sitio web:</label>
+                                    <input type="text" name="web" id="web"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Sitio web de la empresa" v-model.trim="createdCompany.web" />
+                                </div>
                                 <div class="col-span-1">
                                     <label for="sampleSector"
                                         class="block mb-2 text-sm font-medium text-gray-900">Sector de la
@@ -646,6 +660,7 @@ export default {
                 sampleSizeId: "",
                 panelId: "",
                 regionId:"",
+                web:"",
                 use:""
             },
             createdCompany: {
@@ -671,6 +686,7 @@ export default {
                 sampleSizeId: "",
                 panelId: "",
                 regionId:"",
+                web:"",
                 use:""
             },
             companyDeleted: {
@@ -697,6 +713,7 @@ export default {
                 sampleSizeId: "",
                 panelId: "",
                 regionId:"",
+                web:"",
                 use:""
             }
 
@@ -777,6 +794,7 @@ export default {
                         panelId: company.panelId,
                         regionId: company.regionId,
                         countryId: company.countryId,
+                        web: company.web,
                         use:company.use
                     }));
                 })
@@ -850,6 +868,7 @@ export default {
                         panelId: company.panelId,
                         regionId: company.regionId,
                         countryId: company.countryId,
+                        web: company.web,
                         use:company.use
                     }));
                     this.closeCreateCompanyModal()
@@ -897,6 +916,7 @@ export default {
                         panelId: company.panelId,
                         regionId: company.regionId,
                         countryId: company.countryId,
+                        web:company.web,
                         use:company.use
                     }));
                     this.closeUpdateCompanyModal()
@@ -944,6 +964,7 @@ export default {
                         panelId: company.panelId,
                         regionId: company.regionId,
                         countryId: company.countryId,
+                        web: company.web,
                         use:company.use
                     }));
                     this.closeDeleteCompanyAlert()

@@ -54,35 +54,39 @@
                             </option>
                         </select>
                     </div>
-                    <div class="col-span-2 mb-3" v-if="call.incidenceId == 2">
+                    <div class="col-span-2 mb-3"
+                        v-if="call.incidenceId != '' && call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4 && call.incidenceId != 5">
                         <label for="username" class="block mb-2 text-sm font-medium text-gray-900">
                             Comentario:</label>
                         <textarea name="comentarios" rows="5" cols="165" v-model="call.comment"></textarea>
                     </div>
                 </div>
-                <div class="col-span-2 mb-7" v-if="call.incidenceId == 3">
+                <div class="col-span-2 mb-7" v-if="call.incidenceId == 5">
                     <label for="reschedulingDate" class="block mb-2 text-sm font-medium text-gray-900">Fecha de
                         reprogramación de llamado:</label>
                     <input type="date" name="reschedulingDate" id="reschedulingDate" v-model="call.rescheduled.date"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
                 </div>
-                <div class="col-span-2 mb-7" v-if="call.incidenceId == 3">
+                <div class="col-span-2 mb-7" v-if="call.incidenceId == 5">
                     <label for="reschedulingTime" class="block mb-2 text-sm font-medium text-gray-900">Hora de
                         reprogramación de llamado:</label>
                     <input type="time" name="reschedulingTime" id="reschedulingTime" v-model="call.rescheduled.time"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
                 </div>
-                <button type="submit" v-if="call.incidenceId == 1" @click="openModal"
+                <button type="submit"
+                    v-if="call.incidenceId == 1 || call.incidenceId === 2 || call.incidenceId === 3 || call.incidenceId === 4"
+                    @click="openModal"
                     class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
                     Desplegar formulario de contactación
                 </button>
-                <button type="submit" v-if="call.incidenceId == 2"
-                    class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
-                    Agregar incidencia
-                </button>
-                <button type="submit" v-if="call.incidenceId == 3"
+                <button type="submit" v-if="call.incidenceId === 5"
                     class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
                     Reprogramar llamado
+                </button>
+                <button type="submit"
+                    v-if="call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4 && call.incidenceId != 5"
+                    class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
+                    Agregar incidencia
                 </button>
                 <table class="min-w-full bg-white border border-gray-300 text-sm text-left">
                     <thead class="bg-gray-50 text-gray-600 uppercase text-xs border-b border-gray-300">
@@ -104,6 +108,10 @@
                     </tbody>
                 </table>
             </form>
+            <button type="submit" @click="getDataRandomCompany(this.getUserID)"
+                class="mt-5 px-3 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-3.5 mb-6 text-center">
+                Cambiar de contacto
+            </button>
         </div>
         <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div class="bg-white p-6 rounded-md w-4xl max-h-[80vh] overflow-auto">
@@ -111,11 +119,16 @@
                     <h2 class="text-lg font-semibold">Encuesta</h2>
                     <button @click="closeModal" class="text-gray-500 hover:text-gray-800">✖</button>
                 </div>
-                <router-view :buttonNext="buttonNext" @update:buttonNext="buttonNext = $event"
+                <router-view :buttonNext="buttonNext" :showRejectButton="showRejectButton"
+                    @update:buttonNext="buttonNext = $event" @update:showRejectButton="showRejectButton = $event"
                     :randomCompany="randomCompany"></router-view>
-                <div class="flex justify-between mt-4">
+                <div class="flex justify-end space-x-4 mt-4">
+                    <button v-if="showRejectButton" @click="rejectInterview"
+                        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
+                        Terminar entrevista
+                    </button>
                     <button v-if="currentPage < 13" @click="nextPage" :disabled="buttonNext"
-                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ml-auto">
+                        class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
                         Siguiente
                     </button>
                 </div>
@@ -142,6 +155,7 @@ export default {
             incidents: [],
             randomCompany: "",
             toast: useToast(),
+            showRejectButton: true,
             buttonNext: false,
             call: {
                 phone: "",
@@ -158,6 +172,7 @@ export default {
     },
     mounted() {
         this.getDataIncidents()
+        this.getDataRandomCompany()
         if (this.$route.params.companyId) {
             this.getSelectCompanyToCallById(this.$route.params.companyId)
         }
@@ -166,13 +181,22 @@ export default {
         }
     },
     methods: {
+        ...mapActions(["resetSurveyInfo"]),
+        resetSurvey() {
+            this.resetSurveyInfo()
+        },
         openModal() {
             this.isModalOpen = true;
             this.$router.push({ path: "/contact/survey/1" }); // Usa una ruta absoluta
         },
         closeModal() {
             this.isModalOpen = false;
+            this.resetSurvey()
+            this.getDataRandomCompany()
             this.$router.push({ path: "/contact" }); // Usa una ruta absoluta
+        },
+        rejectInterview() {
+            this.$router.push({ path: "/contact/survey/13", query: { rejection: 3 } }); // Usa una ruta absoluta
         },
         nextPage() {
             let nextPage = this.currentPage + 1;
@@ -182,7 +206,7 @@ export default {
                 } else if (this.survey.Q_S7 != "") {
                     if (this.survey.Q_S7 < 5) {
                         this.$router.push({ path: "/contact/survey/13" });
-                    }else{
+                    } else {
                         this.$router.push({ path: `/contact/survey/${nextPage}` });
                     }
                 } else {
@@ -195,6 +219,9 @@ export default {
                 .then((response) => {
                     this.toast.success(response.data.msg);
                     this.calls = response.data.calls
+                    if (call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4) {
+                        this.getDataRandomCompany()
+                    }
                 })
                 .catch((e) => {
                     let errors = e.response.data.errors;
@@ -219,8 +246,24 @@ export default {
                 });
         },
         getDataRandomCompany(userId) {
+            this.calls = [],
+                this.randomCompany = "",
+                this.showRejectButton = true,
+                this.buttonNext = false,
+                this.calls = {
+                    phone: "",
+                    comment: "",
+                    date: new Date().toLocaleString("sv-SE", { timeZone: "America/Santiago" }).replace("T", " "),
+                    companyId: "",
+                    incidenceId: "",
+                    rescheduled: {
+                        date: "",
+                        time: ""
+                    }
+                }
             GlobalService.getData(`/call/get-random-company/${userId}`)
                 .then((response) => {
+                    console.log(response)
                     this.randomCompany = response
                     this.call.companyId = response.id
                     this.call.phone = response.phoneNumberOne
