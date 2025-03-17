@@ -106,12 +106,13 @@
             </form>
         </div>
         <div v-if="isModalOpen" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div class="bg-white p-6 rounded-md w-3/4 max-h-[80vh] overflow-auto">
+            <div class="bg-white p-6 rounded-md w-4xl max-h-[80vh] overflow-auto">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-semibold">Encuesta</h2>
                     <button @click="closeModal" class="text-gray-500 hover:text-gray-800">✖</button>
                 </div>
-                <router-view :buttonNext="buttonNext" @update:buttonNext="buttonNext = $event" :randomCompany="randomCompany"></router-view>
+                <router-view :buttonNext="buttonNext" @update:buttonNext="buttonNext = $event"
+                    :randomCompany="randomCompany"></router-view>
                 <div class="flex justify-between mt-4">
                     <button v-if="currentPage < 13" @click="nextPage" :disabled="buttonNext"
                         class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded ml-auto">
@@ -145,7 +146,7 @@ export default {
             call: {
                 phone: "",
                 comment: "",
-                date:new Date().toLocaleString("sv-SE", { timeZone: "America/Santiago" }).replace("T", " "), 
+                date: new Date().toLocaleString("sv-SE", { timeZone: "America/Santiago" }).replace("T", " "),
                 companyId: "",
                 incidenceId: "",
                 rescheduled: {
@@ -176,8 +177,14 @@ export default {
         nextPage() {
             let nextPage = this.currentPage + 1;
             if (nextPage <= 13) {
-                if (this.survey.Q_A7D_estab_name!="") {
+                if (this.survey.Q_A7D_estab_name != "") {
                     this.$router.push({ path: "/contact/survey/12" });
+                } else if (this.survey.Q_S7 != "") {
+                    if (this.survey.Q_S7 < 5) {
+                        this.$router.push({ path: "/contact/survey/13" });
+                    }else{
+                        this.$router.push({ path: `/contact/survey/${nextPage}` });
+                    }
                 } else {
                     this.$router.push({ path: `/contact/survey/${nextPage}` });
                 }

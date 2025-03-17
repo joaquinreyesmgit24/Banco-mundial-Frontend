@@ -29,9 +29,6 @@ export default {
     mounted() {
             this.$emit('update:buttonNext', true);
     },
-    beforeUnmount() { // O "beforeDestroy" en Vue 2
-        this.$emit('update:buttonNext', false);
-    },
     computed: {
         ...mapGetters(["getSurvey"]),
         survey: {

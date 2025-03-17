@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="width:800px">
         <h2 class="font-bold mb-4 text-center">A. INFORMACIÓN DE CONTROL DEL CUESTIONARIO DE SELECCIÓN</h2>
         <p class="text-gray-600 text-center mb-5">
             <span class="text-blue-500">[Buenos días/Buenas tardes/Buenas noches]</span>. Le llamo de <span

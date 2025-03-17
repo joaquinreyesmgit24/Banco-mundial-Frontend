@@ -85,6 +85,9 @@ export default {
     props: {
         randomCompany: Object
     },
+    mounted() {
+            this.$emit('update:buttonNext', false);
+    },
     computed: {
         ...mapGetters(["getSurvey"]),
         survey: {

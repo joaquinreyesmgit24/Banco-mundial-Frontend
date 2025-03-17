@@ -42,10 +42,7 @@ export default {
         // Escucha cambios en S9 y actualiza buttonNext
         "survey.Q_S7"(newValue) {
             if (newValue != "") {
-                if (newValue < 5) {
-                    this.$router.push({ path: "/contact/survey/13" });
-                }
-                this.$emit("update:buttonNext", false);
+                    this.$emit("update:buttonNext", false);   
             }
         }
     },
