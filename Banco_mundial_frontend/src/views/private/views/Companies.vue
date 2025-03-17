@@ -197,7 +197,7 @@
                                     <input type="text" name="numberPhoneCallSecond" id="numberPhoneCallSecond"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de llamadas del teléfono 2"
-                                        v-model.trim="editedCompany.numberPhoneCallSecond" />
+                                        v-model.trim="editedCompany.numberPhoneCallsSecond" />
                                 </div>
                             </div>
                             <div class="flex justify-end mt-4" v-show="nextCompanyUpdateModal">
@@ -207,6 +207,29 @@
                                 </button>
                             </div>
                             <div v-show="!nextCompanyUpdateModal" class="grid gap-2 mb-4 grid-cols-2">
+                               <div class="col-span-2">
+                                    <label for="sampleSector"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Región:</label>
+                                    <select id="sampleSector"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        v-model="editedCompany.regionId">
+                                        <option value="" disabled selected>
+                                            Seleccionar región
+                                        </option>
+                                        <option v-for="region in regions" :key="region.id"
+                                            :value="region.id">
+                                            {{ region.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="zipCode"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Número postal:</label>
+                                    <input type="text" name="zipCode" id="zipCode"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número postal"
+                                        v-model.trim="editedCompany.zipCode" />
+                                </div>
                                 <div class="col-span-2">
                                     <label for="preferenceNumber"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
@@ -215,22 +238,6 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de preferencia"
                                         v-model.trim="editedCompany.preferenceNumber" />
-                                </div>
-                                <div class="col-span-2">
-                                    <label for="callStartTime"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Horario de
-                                        inicio de llamada:</label>
-                                    <input type="text" name="callStartTime" id="callStartTime"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        v-model.trim="editedCompany.callStartTime" />
-                                </div>
-                                <div class="col-span-2">
-                                    <label for="callEndTime"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Horario de termino
-                                        de llamada:</label>
-                                    <input type="text" name="callEndTime" id="callEndTime"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        v-model.trim="editedCompany.callEndTime" />
                                 </div>
                                 <div class="col-span-2">
                                     <label for="faxNumber" class="block mb-2 text-sm font-medium text-gray-900">Número
@@ -281,12 +288,12 @@
                                     </select>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Ubicación
+                                    <label for="sampleLocation" class="block mb-2 text-sm font-medium text-gray-900">Ubicación
                                         de la
                                         muestra:</label>
-                                    <input type="text" name="username" id="username"
+                                    <input type="text" name="sampleLocation" id="sampleLocation"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="editedCompany.sampleLocation" />
+                                        placeholder="Ubicación de la muestra" v-model.trim="editedCompany.sampleLocation" />
                                 </div>
                                 <div class="col-span-1">
                                     <label for="panel" class="block mb-2 text-sm font-medium text-gray-900">Panel de la
@@ -429,6 +436,29 @@
                             </div>
                             <div v-show="!nextCompanyCreateModal" class="grid gap-2 mb-4 grid-cols-2">
                                 <div class="col-span-2">
+                                    <label for="sampleSector"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Región:</label>
+                                    <select id="sampleSector"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        v-model="createdCompany.regionId">
+                                        <option value="" disabled selected>
+                                            Seleccionar región
+                                        </option>
+                                        <option v-for="region in regions" :key="region.id"
+                                            :value="region.id">
+                                            {{ region.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="zipCode"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Número postal:</label>
+                                    <input type="text" name="zipCode" id="zipCode"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número postal"
+                                        v-model.trim="createdCompany.zipCode" />
+                                </div>
+                                <div class="col-span-2">
                                     <label for="preferenceNumber"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
                                         preferencia:</label>
@@ -436,22 +466,6 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de preferencia"
                                         v-model.trim="createdCompany.preferenceNumber" />
-                                </div>
-                                <div class="col-span-2">
-                                    <label for="callStartTime"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Horario de
-                                        inicio llamada:</label>
-                                    <input type="time" name="callStartTime" id="callStartTime"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        v-model.trim="createdCompany.callStartTime" />
-                                </div>
-                                <div class="col-span-2">
-                                    <label for="callEndTime"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Horario de termino
-                                        de llamada:</label>
-                                    <input type="time" name="callEndTime" id="callEndTime"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        v-model.trim="createdCompany.callEndTime" />
                                 </div>
                                 <div class="col-span-2">
                                     <label for="faxNumber" class="block mb-2 text-sm font-medium text-gray-900">Número
@@ -502,10 +516,10 @@
                                     </select>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Ubicación
+                                    <label for="sampleLocation" class="block mb-2 text-sm font-medium text-gray-900">Ubicación
                                         de la
                                         muestra:</label>
-                                    <input type="text" name="username" id="username"
+                                    <input type="text" name="sampleLocation" id="sampleLocation"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Nombre de usuario" v-model.trim="createdCompany.sampleLocation" />
                                 </div>
@@ -607,6 +621,7 @@ export default {
             sampleSizes: [],
             sampleSectors: [],
             panels: [],
+            regions:[],
             editedCompany: {
                 id: "",
                 code: "",
@@ -617,18 +632,21 @@ export default {
                 street: "",
                 city: "",
                 state: "",
+                contactPerson:"",
+                contactPosition: "",
                 phoneNumberOne: "",
                 numberPhoneCallsOne: "",
                 phoneNumberSecond: "",
                 numberPhoneCallsSecond: "",
+                zipCode: "",
                 faxNumber: "",
                 preferenceNumber: "",
-                callStartTime: "",
-                callEndTime: "",
                 emailAddress: "",
                 sampleSectorId: "",
                 sampleSizeId: "",
-                panelId: ""
+                panelId: "",
+                regionId:"",
+                use:""
             },
             createdCompany: {
                 code: "",
@@ -639,18 +657,21 @@ export default {
                 street: "",
                 city: "",
                 state: "",
+                contactPerson:"",
+                contactPosition: "",
                 phoneNumberOne: "",
                 numberPhoneCallsOne: "",
                 phoneNumberSecond: "",
                 numberPhoneCallsSecond: "",
+                zipCode: "",
                 faxNumber: "",
                 preferenceNumber: "",
-                callStartTime: "",
-                callEndTime: "",
                 emailAddress: "",
                 sampleSectorId: "",
                 sampleSizeId: "",
-                panelId: ""
+                panelId: "",
+                regionId:"",
+                use:""
             },
             companyDeleted: {
                 id: "",
@@ -662,18 +683,21 @@ export default {
                 street: "",
                 city: "",
                 state: "",
+                contactPerson:"",
+                contactPosition: "",
                 phoneNumberOne: "",
                 numberPhoneCallsOne: "",
                 phoneNumberSecond: "",
                 numberPhoneCallsSecond: "",
+                zipCode: "",
                 faxNumber: "",
                 preferenceNumber: "",
-                callStartTime: "",
-                callEndTime: "",
                 emailAddress: "",
                 sampleSectorId: "",
                 sampleSizeId: "",
-                panelId: ""
+                panelId: "",
+                regionId:"",
+                use:""
             }
 
         };
@@ -683,6 +707,7 @@ export default {
         this.getDataSampleSectors();
         this.getDataSampleSizes();
         this.getDataPanels();
+        this.getDataRegions();
     },
     methods: {
         uploadFile() {
@@ -737,18 +762,22 @@ export default {
                         street: company.street,
                         city: company.city,
                         state: company.state,
+                        contactPerson:company.contactPerson,
+                        contactPosition: company.contactPosition,
                         phoneNumberOne: company.phoneNumberOne,
                         numberPhoneCallsOne: company.numberPhoneCallsOne,
                         phoneNumberSecond: company.phoneNumberSecond,
                         numberPhoneCallsSecond: company.numberPhoneCallsSecond,
+                        zipCode: company.zipCode,
                         faxNumber: company.faxNumber,
                         preferenceNumber: company.preferenceNumber,
-                        callStartTime: company.callStartTime,
-                        callEndTime: company.callEndTime,
                         emailAddress: company.emailAddress,
                         sampleSectorId: company.sampleSectorId,
                         sampleSizeId: company.sampleSizeId,
-                        panelId: company.panelId
+                        panelId: company.panelId,
+                        regionId: company.regionId,
+                        countryId: company.countryId,
+                        use:company.use
                     }));
                 })
                 .catch((error) => {
@@ -782,6 +811,16 @@ export default {
                     console.log(error);
                 });
         },
+        getDataRegions() {
+            GlobalService.getData("/company/list-regions")
+                .then((response) => {
+                    console.log(response)
+                    this.regions = response.regions
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
         createCompany(createdCompany) {
             GlobalService.createData("/company/create-company", createdCompany)
                 .then((response) => {
@@ -796,18 +835,22 @@ export default {
                         street: company.street,
                         city: company.city,
                         state: company.state,
+                        contactPerson:company.contactPerson,
+                        contactPosition: company.contactPosition,
                         phoneNumberOne: company.phoneNumberOne,
                         numberPhoneCallsOne: company.numberPhoneCallsOne,
                         phoneNumberSecond: company.phoneNumberSecond,
                         numberPhoneCallsSecond: company.numberPhoneCallsSecond,
+                        zipCode: company.zipCode,
                         faxNumber: company.faxNumber,
                         preferenceNumber: company.preferenceNumber,
-                        callStartTime: company.callStartTime,
-                        callEndTime: company.callEndTime,
                         emailAddress: company.emailAddress,
                         sampleSectorId: company.sampleSectorId,
                         sampleSizeId: company.sampleSizeId,
-                        panelId: company.panelId
+                        panelId: company.panelId,
+                        regionId: company.regionId,
+                        countryId: company.countryId,
+                        use:company.use
                     }));
                     this.closeCreateCompanyModal()
                 })
@@ -839,18 +882,22 @@ export default {
                         street: company.street,
                         city: company.city,
                         state: company.state,
+                        contactPerson:company.contactPerson,
+                        contactPosition: company.contactPosition,
                         phoneNumberOne: company.phoneNumberOne,
                         numberPhoneCallsOne: company.numberPhoneCallsOne,
                         phoneNumberSecond: company.phoneNumberSecond,
                         numberPhoneCallsSecond: company.numberPhoneCallsSecond,
+                        zipCode: company.zipCode,
                         faxNumber: company.faxNumber,
                         preferenceNumber: company.preferenceNumber,
-                        callStartTime: company.callStartTime,
-                        callEndTime: company.callEndTime,
                         emailAddress: company.emailAddress,
                         sampleSectorId: company.sampleSectorId,
                         sampleSizeId: company.sampleSizeId,
-                        panelId: company.panelId
+                        panelId: company.panelId,
+                        regionId: company.regionId,
+                        countryId: company.countryId,
+                        use:company.use
                     }));
                     this.closeUpdateCompanyModal()
                 })
@@ -882,18 +929,22 @@ export default {
                         street: company.street,
                         city: company.city,
                         state: company.state,
+                        contactPerson:company.contactPerson,
+                        contactPosition: company.contactPosition,
                         phoneNumberOne: company.phoneNumberOne,
                         numberPhoneCallsOne: company.numberPhoneCallsOne,
                         phoneNumberSecond: company.phoneNumberSecond,
                         numberPhoneCallsSecond: company.numberPhoneCallsSecond,
+                        zipCode: company.zipCode,
                         faxNumber: company.faxNumber,
                         preferenceNumber: company.preferenceNumber,
-                        callStartTime: company.callStartTime,
-                        callEndTime: company.callEndTime,
                         emailAddress: company.emailAddress,
                         sampleSectorId: company.sampleSectorId,
                         sampleSizeId: company.sampleSizeId,
-                        panelId: company.panelId
+                        panelId: company.panelId,
+                        regionId: company.regionId,
+                        countryId: company.countryId,
+                        use:company.use
                     }));
                     this.closeDeleteCompanyAlert()
                 })
