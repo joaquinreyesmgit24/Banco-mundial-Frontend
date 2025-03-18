@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center">
-        <form class="space-y-4 text-center" @submit.prevent="createSurvey(this.survey)">
+        <form class="space-y-4 text-center" @submit="createSurvey(this.survey)">
             <label class="block text-gray-700 text-sm font-bold mb-2"><span class="text-blue-500">ACTUALICE LA HOJA DE
                     INFORMACIÓN SI LOS DATOS DE CONTACTO SON DIFERENTES A LOS LISTADOS</span></label>
             <div>

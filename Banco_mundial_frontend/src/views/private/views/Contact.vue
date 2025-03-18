@@ -3,8 +3,8 @@
 
         <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
             <h2 v-if="randomCompany.length == 0" class="text-center">
-                <span v-if="this.$route.params.companyId">La empresa que se intenta recontactar no tiene llamados
-                    disponibles</span>
+                <span v-if="this.$route.params.companyId">La empresa no se puede contactar debido a que no tiene llamados
+                    disponibles o ya tiene un reporte</span>
                 <span v-else>No hay empresas disponibles para contactar</span>
                 <i class="ri-error-warning-fill ml-2"></i>
             </h2>
@@ -55,19 +55,19 @@
                         </select>
                     </div>
                     <div class="col-span-2 mb-3"
-                        v-if="call.incidenceId != '' && call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4 && call.incidenceId != 5">
+                        v-if="call.incidenceId != '' && call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4 && call.incidenceId != 7">
                         <label for="username" class="block mb-2 text-sm font-medium text-gray-900">
                             Comentario:</label>
                         <textarea name="comentarios" rows="5" cols="165" v-model="call.comment"></textarea>
                     </div>
                 </div>
-                <div class="col-span-2 mb-7" v-if="call.incidenceId == 5">
+                <div class="col-span-2 mb-7" v-if="call.incidenceId == 7">
                     <label for="reschedulingDate" class="block mb-2 text-sm font-medium text-gray-900">Fecha de
                         reprogramación de llamado:</label>
                     <input type="date" name="reschedulingDate" id="reschedulingDate" v-model="call.rescheduled.date"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500" />
                 </div>
-                <div class="col-span-2 mb-7" v-if="call.incidenceId == 5">
+                <div class="col-span-2 mb-7" v-if="call.incidenceId == 7">
                     <label for="reschedulingTime" class="block mb-2 text-sm font-medium text-gray-900">Hora de
                         reprogramación de llamado:</label>
                     <input type="time" name="reschedulingTime" id="reschedulingTime" v-model="call.rescheduled.time"
@@ -79,12 +79,12 @@
                     class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
                     Desplegar formulario de contactación
                 </button>
-                <button type="submit" v-if="call.incidenceId === 5"
+                <button type="submit" v-if="call.incidenceId === 7"
                     class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
                     Reprogramar llamado
                 </button>
                 <button type="submit"
-                    v-if="call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4 && call.incidenceId != 5"
+                    v-if="call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4 && call.incidenceId != 7"
                     class="w-full text-white bg-lime-500 hover:bg-lime-600 focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-sm py-2.5 mb-6 text-center">
                     Agregar incidencia
                 </button>
@@ -217,6 +217,7 @@ export default {
         createCall(call) {
             GlobalService.createData("/call/create-call", call)
                 .then((response) => {
+                    console.log(response)
                     this.toast.success(response.data.msg);
                     this.calls = response.data.calls
                     if (call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4) {

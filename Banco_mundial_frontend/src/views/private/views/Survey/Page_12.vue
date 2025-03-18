@@ -77,7 +77,7 @@ export default {
             if (newValue != "") {
                 this.$emit("update:buttonNext", false);
             }
-        }
+        },
     },
     methods: {
         ...mapActions(["updateStateSurvey"]),

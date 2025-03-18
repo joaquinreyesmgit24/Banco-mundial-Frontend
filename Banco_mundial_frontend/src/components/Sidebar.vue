@@ -40,12 +40,12 @@
                     <span class="text-sm">Agendas</span>
                 </router-link>
             </li> -->
-            <li class="mb-1" v-if="userRol=='Administrador'">
+            <!-- <li class="mb-1" v-if="userRol=='Administrador'">
                 <router-link to="/quotas" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
                     <i class="ri-order-play-line mr-3"></i>
                     <span class="text-sm">Cuotas</span>
                 </router-link>
-            </li>
+            </li> -->
             <!-- <li class="mb-1">
                 <router-link to="/reports" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
                     <i class="ri-phone-fill mr-3"></i>
