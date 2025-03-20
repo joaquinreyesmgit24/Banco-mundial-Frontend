@@ -16,12 +16,11 @@
                 <div class="grid gap-2">
                     <div class="flex items-center justify-center">
                         <label>
-                            <input type="file" ref="fileInput" hidden  @change="handleFileChange"/>
+                            <input type="file" ref="fileInput" hidden @change="handleFileChange" />
                             <div
                                 class="flex w-28 h-9 px-2 flex-col bg-violet-700 rounded-full shadow text-white text-xs font-semibold leading-4 items-center justify-center cursor-pointer focus:outline-none">
                                 Elija archivo</div>
-                                <div
-                                class="flex w-34 h-9 px-2 flex-col text-xs leading-4 items-center justify-center">
+                            <div class="flex w-34 h-9 px-2 flex-col text-xs leading-4 items-center justify-center">
                                 {{ selectedFile.name }}</div>
                         </label>
                     </div>
@@ -117,20 +116,20 @@
                                     <label for="code"
                                         class="block mb-2 text-sm font-medium text-gray-900">Código:</label>
                                     <input type="text" name="code" id="code"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Código" v-model.trim="editedCompany.code" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="rut" class="block mb-2 text-sm font-medium text-gray-900">Rut:</label>
                                     <input type="text" name="rut" id="rut"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Rut" v-model.trim="editedCompany.rut" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="name"
                                         class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
                                     <input type="text" name="name" id="name"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Nombre" v-model.trim="editedCompany.name" />
                                 </div>
                                 <div class="col-span-2">
@@ -138,64 +137,64 @@
                                         de
                                         casa/piso/puerta:</label>
                                     <input type="text" name="floorNumber" id="floorNumber"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de casa/Piso/Puerta"
                                         v-model.trim="editedCompany.floorNumber" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="street"
                                         class="block mb-2 text-sm font-medium text-gray-900">Calle:</label>
                                     <input type="text" name="street" id="street"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Calle" v-model.trim="editedCompany.street" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="city"
                                         class="block mb-2 text-sm font-medium text-gray-900">Ciudad:</label>
                                     <input type="text" name="city" id="city"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Ciudad" v-model.trim="editedCompany.city" />
                                 </div>
                                 <div class="col-span-2">
                                     <label for="state"
                                         class="block mb-2 text-sm font-medium text-gray-900">Estado/provincia:</label>
                                     <input type="text" name="state" id="state"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Estado/Provincia" v-model.trim="editedCompany.state" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="phoneNumberOne"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
                                         teléfono 1:</label>
                                     <input type="text" name="phoneNumberOne" id="phoneNumberOne"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de teléfono 1"
                                         v-model.trim="editedCompany.phoneNumberOne" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="numberPhoneCallsOne"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
-                                        llamadas del teléfono 1:</label>
+                                        llamadas:</label>
                                     <input type="text" name="numberPhoneCallsOne" id="numberPhoneCallsOne"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de llamadas del teléfono 1"
                                         v-model.trim="editedCompany.numberPhoneCallsOne" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="phoneNumberSecond"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
                                         teléfono 2:</label>
                                     <input type="text" name="phoneNumberSecond" id="phoneNumberSecond"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de teléfono 2"
                                         v-model.trim="editedCompany.phoneNumberSecond" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="numberPhoneCallSecond"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número
-                                        de llamadas del teléfono 2:</label>
+                                        de llamadas:</label>
                                     <input type="text" name="numberPhoneCallSecond" id="numberPhoneCallSecond"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de llamadas del teléfono 2"
                                         v-model.trim="editedCompany.numberPhoneCallsSecond" />
                                 </div>
@@ -207,7 +206,7 @@
                                 </button>
                             </div>
                             <div v-show="!nextCompanyUpdateModal" class="grid gap-2 mb-4 grid-cols-2">
-                               <div class="col-span-2">
+                                <div class="col-span-2">
                                     <label for="sampleSector"
                                         class="block mb-2 text-sm font-medium text-gray-900">Región:</label>
                                     <select id="sampleSector"
@@ -216,26 +215,24 @@
                                         <option value="" disabled selected>
                                             Seleccionar región
                                         </option>
-                                        <option v-for="region in regions" :key="region.id"
-                                            :value="region.id">
+                                        <option v-for="region in regions" :key="region.id" :value="region.id">
                                             {{ region.name }}
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-span-2">
-                                    <label for="zipCode"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Número postal:</label>
+                                <div class="col-span-1">
+                                    <label for="zipCode" class="block mb-2 text-sm font-medium text-gray-900">Número
+                                        postal:</label>
                                     <input type="text" name="zipCode" id="zipCode"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Número postal"
-                                        v-model.trim="editedCompany.zipCode" />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número postal" v-model.trim="editedCompany.zipCode" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="preferenceNumber"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
                                         preferencia:</label>
                                     <input type="text" name="preferenceNumber" id="preferenceNumber"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de preferencia"
                                         v-model.trim="editedCompany.preferenceNumber" />
                                 </div>
@@ -244,22 +241,22 @@
                                         de
                                         fax:</label>
                                     <input type="text" name="faxNumber" id="faxNumber"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de fax" v-model.trim="editedCompany.faxNumber" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="emailAddress"
                                         class="block mb-2 text-sm font-medium text-gray-900">Dirección de
                                         correo electrónico:</label>
                                     <input type="text" name="emailAddress" id="emailAddress"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Correo de la empresa" v-model.trim="editedCompany.emailAddress" />
                                 </div>
-                                <div class="col-span-2">
-                                    <label for="web"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Sitio web:</label>
+                                <div class="col-span-1">
+                                    <label for="web" class="block mb-2 text-sm font-medium text-gray-900">Sitio
+                                        web:</label>
                                     <input type="text" name="web" id="web"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Sitio web de la empresa" v-model.trim="editedCompany.web" />
                                 </div>
                                 <div class="col-span-1">
@@ -267,7 +264,7 @@
                                         class="block mb-2 text-sm font-medium text-gray-900">Sector de la
                                         muestra:</label>
                                     <select id="sampleSector"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         v-model="editedCompany.sampleSectorId">
                                         <option value="" disabled selected>
                                             Seleccionar sector de la muestra
@@ -283,7 +280,7 @@
                                         de la
                                         muestra:</label>
                                     <select id="SampleSize"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         v-model="editedCompany.sampleSizeId">
                                         <option value="" disabled selected>
                                             Seleccionar tamaño de la muestra
@@ -295,18 +292,20 @@
                                     </select>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="sampleLocation" class="block mb-2 text-sm font-medium text-gray-900">Ubicación
+                                    <label for="sampleLocation"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Ubicación
                                         de la
                                         muestra:</label>
                                     <input type="text" name="sampleLocation" id="sampleLocation"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Ubicación de la muestra" v-model.trim="editedCompany.sampleLocation" />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Ubicación de la muestra"
+                                        v-model.trim="editedCompany.sampleLocation" />
                                 </div>
                                 <div class="col-span-1">
                                     <label for="panel" class="block mb-2 text-sm font-medium text-gray-900">Panel de la
                                         muestra:</label>
                                     <select id="panel"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         v-model="editedCompany.panelId">
                                         <option value="" disabled selected>
                                             Seleccionar panel de la muestra
@@ -352,20 +351,20 @@
                                     <label for="code"
                                         class="block mb-2 text-sm font-medium text-gray-900">Código:</label>
                                     <input type="text" name="code" id="code"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Código" v-model.trim="createdCompany.code" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="code" class="block mb-2 text-sm font-medium text-gray-900">Rut:</label>
                                     <input type="text" name="rut" id="rut"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Rut" v-model.trim="createdCompany.rut" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="name"
                                         class="block mb-2 text-sm font-medium text-gray-900">Nombre:</label>
                                     <input type="text" name="name" id="name"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Nombre" v-model.trim="createdCompany.name" />
                                 </div>
                                 <div class="col-span-2">
@@ -373,64 +372,64 @@
                                         de
                                         casa/piso/puerta:</label>
                                     <input type="text" name="floorNumber" id="floorNumber"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de casa/Piso/Puerta"
                                         v-model.trim="createdCompany.floorNumber" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="street"
                                         class="block mb-2 text-sm font-medium text-gray-900">Calle:</label>
                                     <input type="text" name="street" id="street"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Calle" v-model.trim="createdCompany.street" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="city"
                                         class="block mb-2 text-sm font-medium text-gray-900">Ciudad:</label>
                                     <input type="text" name="city" id="city"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Ciudad" v-model.trim="createdCompany.city" />
                                 </div>
                                 <div class="col-span-2">
                                     <label for="state"
                                         class="block mb-2 text-sm font-medium text-gray-900">Estado/provincia:</label>
                                     <input type="text" name="state" id="state"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Estado/Provincia" v-model.trim="createdCompany.state" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="phoneNumberOne"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
                                         teléfono 1:</label>
                                     <input type="text" name="phoneNumberOne" id="phoneNumberOne"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de teléfono 1"
                                         v-model.trim="createdCompany.phoneNumberOne" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="numberPhoneCallsOne"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
-                                        llamadas del teléfono 1:</label>
+                                        llamadas:</label>
                                     <input type="text" name="numberPhoneCallsOne" id="numberPhoneCallsOne"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de llamadas del teléfono 1"
                                         v-model.trim="createdCompany.numberPhoneCallsOne" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="phoneNumberSecond"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
                                         teléfono 2:</label>
                                     <input type="text" name="phoneNumberSecond" id="phoneNumberSecond"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de teléfono 2"
                                         v-model.trim="createdCompany.phoneNumberSecond" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="numberPhoneCallsSecond"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número
-                                        de llamadas teléfono 2:</label>
+                                        de llamadas:</label>
                                     <input type="text" name="numberPhoneCallsSecond" id="numberPhoneCallsSecond"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de llamadas del teléfono 2"
                                         v-model.trim="createdCompany.numberPhoneCallsSecond" />
                                 </div>
@@ -446,31 +445,29 @@
                                     <label for="sampleSector"
                                         class="block mb-2 text-sm font-medium text-gray-900">Región:</label>
                                     <select id="sampleSector"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         v-model="createdCompany.regionId">
                                         <option value="" disabled selected>
                                             Seleccionar región
                                         </option>
-                                        <option v-for="region in regions" :key="region.id"
-                                            :value="region.id">
+                                        <option v-for="region in regions" :key="region.id" :value="region.id">
                                             {{ region.name }}
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-span-2">
-                                    <label for="zipCode"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Número postal:</label>
+                                <div class="col-span-1">
+                                    <label for="zipCode" class="block mb-2 text-sm font-medium text-gray-900">Número
+                                        postal:</label>
                                     <input type="text" name="zipCode" id="zipCode"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Número postal"
-                                        v-model.trim="createdCompany.zipCode" />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Número postal" v-model.trim="createdCompany.zipCode" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="preferenceNumber"
                                         class="block mb-2 text-sm font-medium text-gray-900">Número de
                                         preferencia:</label>
                                     <input type="text" name="preferenceNumber" id="preferenceNumber"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de preferencia"
                                         v-model.trim="createdCompany.preferenceNumber" />
                                 </div>
@@ -479,22 +476,21 @@
                                         de
                                         fax:</label>
                                     <input type="text" name="faxNumber" id="faxNumber"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Número de fax" v-model.trim="createdCompany.faxNumber" />
                                 </div>
-                                <div class="col-span-2">
+                                <div class="col-span-1">
                                     <label for="emailAddress"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Dirección de
-                                        correo electrónico:</label>
+                                        class="block mb-2 text-sm font-medium text-gray-900">correo electrónico:</label>
                                     <input type="text" name="emailAddress" id="emailAddress"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Correo de la empresa" v-model.trim="createdCompany.emailAddress" />
                                 </div>
-                                <div class="col-span-2">
-                                    <label for="web"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Sitio web:</label>
+                                <div class="col-span-1">
+                                    <label for="web" class="block mb-2 text-sm font-medium text-gray-900">Sitio
+                                        web:</label>
                                     <input type="text" name="web" id="web"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         placeholder="Sitio web de la empresa" v-model.trim="createdCompany.web" />
                                 </div>
                                 <div class="col-span-1">
@@ -502,7 +498,7 @@
                                         class="block mb-2 text-sm font-medium text-gray-900">Sector de la
                                         muestra:</label>
                                     <select id="sampleSector"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         v-model="createdCompany.sampleSectorId">
                                         <option value="" disabled selected>
                                             Seleccionar sector de la muestra
@@ -518,7 +514,7 @@
                                         de la
                                         muestra:</label>
                                     <select id="SampleSize"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         v-model="createdCompany.sampleSizeId">
                                         <option value="" disabled selected>
                                             Seleccionar tamaño de la muestra
@@ -530,18 +526,17 @@
                                     </select>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="sampleLocation" class="block mb-2 text-sm font-medium text-gray-900">Ubicación
-                                        de la
-                                        muestra:</label>
+                                    <label for="sampleLocation"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Ubicación de la muestra:</label>
                                     <input type="text" name="sampleLocation" id="sampleLocation"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
-                                        placeholder="Nombre de usuario" v-model.trim="createdCompany.sampleLocation" />
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
+                                        placeholder="Ubicación de la muestra" v-model.trim="createdCompany.sampleLocation" />
                                 </div>
                                 <div class="col-span-1">
                                     <label for="panel" class="block mb-2 text-sm font-medium text-gray-900">Panel de la
                                         muestra:</label>
                                     <select id="panel"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 placeholder-gray-400 focus:ring-primary-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-1.5 placeholder-gray-400 focus:ring-primary-500"
                                         v-model="createdCompany.panelId">
                                         <option value="" disabled selected>
                                             Seleccionar panel de la muestra
@@ -635,7 +630,7 @@ export default {
             sampleSizes: [],
             sampleSectors: [],
             panels: [],
-            regions:[],
+            regions: [],
             editedCompany: {
                 id: "",
                 code: "",
@@ -646,7 +641,7 @@ export default {
                 street: "",
                 city: "",
                 state: "",
-                contactPerson:"",
+                contactPerson: "",
                 contactPosition: "",
                 phoneNumberOne: "",
                 numberPhoneCallsOne: "",
@@ -659,9 +654,9 @@ export default {
                 sampleSectorId: "",
                 sampleSizeId: "",
                 panelId: "",
-                regionId:"",
-                web:"",
-                use:""
+                regionId: "",
+                web: "",
+                use: ""
             },
             createdCompany: {
                 code: "",
@@ -672,7 +667,7 @@ export default {
                 street: "",
                 city: "",
                 state: "",
-                contactPerson:"",
+                contactPerson: "",
                 contactPosition: "",
                 phoneNumberOne: "",
                 numberPhoneCallsOne: "",
@@ -685,9 +680,9 @@ export default {
                 sampleSectorId: "",
                 sampleSizeId: "",
                 panelId: "",
-                regionId:"",
-                web:"",
-                use:""
+                regionId: "",
+                web: "",
+                use: ""
             },
             companyDeleted: {
                 id: "",
@@ -699,7 +694,7 @@ export default {
                 street: "",
                 city: "",
                 state: "",
-                contactPerson:"",
+                contactPerson: "",
                 contactPosition: "",
                 phoneNumberOne: "",
                 numberPhoneCallsOne: "",
@@ -712,9 +707,9 @@ export default {
                 sampleSectorId: "",
                 sampleSizeId: "",
                 panelId: "",
-                regionId:"",
-                web:"",
-                use:""
+                regionId: "",
+                web: "",
+                use: ""
             }
 
         };
@@ -740,7 +735,7 @@ export default {
                     let error = e.response.data.error;
                     this.toast.error(error)
                 })
-            } 
+            }
         },
         handleFileChange() {
             this.selectedFile = this.$refs.fileInput.files[0];
@@ -779,7 +774,7 @@ export default {
                         street: company.street,
                         city: company.city,
                         state: company.state,
-                        contactPerson:company.contactPerson,
+                        contactPerson: company.contactPerson,
                         contactPosition: company.contactPosition,
                         phoneNumberOne: company.phoneNumberOne,
                         numberPhoneCallsOne: company.numberPhoneCallsOne,
@@ -795,7 +790,7 @@ export default {
                         regionId: company.regionId,
                         countryId: company.countryId,
                         web: company.web,
-                        use:company.use
+                        use: company.use
                     }));
                 })
                 .catch((error) => {
@@ -853,7 +848,7 @@ export default {
                         street: company.street,
                         city: company.city,
                         state: company.state,
-                        contactPerson:company.contactPerson,
+                        contactPerson: company.contactPerson,
                         contactPosition: company.contactPosition,
                         phoneNumberOne: company.phoneNumberOne,
                         numberPhoneCallsOne: company.numberPhoneCallsOne,
@@ -869,7 +864,7 @@ export default {
                         regionId: company.regionId,
                         countryId: company.countryId,
                         web: company.web,
-                        use:company.use
+                        use: company.use
                     }));
                     this.closeCreateCompanyModal()
                 })
@@ -901,7 +896,7 @@ export default {
                         street: company.street,
                         city: company.city,
                         state: company.state,
-                        contactPerson:company.contactPerson,
+                        contactPerson: company.contactPerson,
                         contactPosition: company.contactPosition,
                         phoneNumberOne: company.phoneNumberOne,
                         numberPhoneCallsOne: company.numberPhoneCallsOne,
@@ -916,8 +911,8 @@ export default {
                         panelId: company.panelId,
                         regionId: company.regionId,
                         countryId: company.countryId,
-                        web:company.web,
-                        use:company.use
+                        web: company.web,
+                        use: company.use
                     }));
                     this.closeUpdateCompanyModal()
                 })
@@ -949,7 +944,7 @@ export default {
                         street: company.street,
                         city: company.city,
                         state: company.state,
-                        contactPerson:company.contactPerson,
+                        contactPerson: company.contactPerson,
                         contactPosition: company.contactPosition,
                         phoneNumberOne: company.phoneNumberOne,
                         numberPhoneCallsOne: company.numberPhoneCallsOne,
@@ -965,7 +960,7 @@ export default {
                         regionId: company.regionId,
                         countryId: company.countryId,
                         web: company.web,
-                        use:company.use
+                        use: company.use
                     }));
                     this.closeDeleteCompanyAlert()
                 })

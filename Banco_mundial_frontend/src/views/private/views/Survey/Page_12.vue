@@ -3,13 +3,14 @@
         <form class="space-y-4 text-center">
             <label class="block text-gray-700 text-sm font-bold mb-2">S.12. INFORMACIÓN DE LA CITA:</label>
             <label class="block text-gray-700 text-sm mb-2">Nos gustaría programar una cita para una entrevista. El
-                propósito de esta encuesta es comprender mejor las condiciones de las empresas privadas y cómo afectan
-                la productividad y el crecimiento. Sus respuestas y las de otros líderes empresariales ayudarán a
-                diseñar nuevas políticas y programas para mejorar el entorno empresarial. Toda la información que
-                proporcione será anónima y ni su nombre ni el nombre de su establecimiento se utilizarán en ningún
-                documento basado en esta encuesta. Si lo desea, puede ver los resultados de encuestas anteriores y el
-                tipo de indicadores generados a partir de estos datos visitando el sitio web del Banco Mundial: <a
-                    href="http://www.enterprisesurveys.org/"
+                propósito de esta encuesta es comprender <br>  mejor las condiciones de las empresas privadas y cómo
+                afectan la productividad y el crecimiento. <br> Sus respuestas y las de otros líderes empresariales
+                ayudarán a diseñar nuevas políticas y programas  <br> para mejorar el entorno empresarial. Toda la
+                información que proporcione será anónima  y ni su nombre <br> ni el nombre de su establecimiento se
+                utilizarán en ningún documento basado en esta encuesta. <br> Si lo desea, puede ver los resultados
+                de encuestas anteriores y el tipo de indicadores generados a partir <br>  de estos datos visitando el
+                sitio web del Banco Mundial:
+                <a href="http://www.enterprisesurveys.org/"
                     target="_blank">http://www.enterprisesurveys.org/</a></label>
 
             <div>

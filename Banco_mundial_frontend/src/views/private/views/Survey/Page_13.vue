@@ -1,15 +1,16 @@
 <template>
     <div class="flex justify-center">
-        <form class="space-y-4 text-center" @submit="createSurvey(this.survey)">
+        <form class="space-y-4 text-center" @submit.prevent="createSurvey(this.survey)">
             <label class="block text-gray-700 text-sm font-bold mb-2"><span class="text-blue-500">ACTUALICE LA HOJA DE
                     INFORMACIÓN SI LOS DATOS DE CONTACTO SON DIFERENTES A LOS LISTADOS</span></label>
             <div>
-                <label for="mainSelect" v-if="(survey.Q_S10 != 2 && survey.Q_S8 !=1 && 
-                survey.Q_S9 != 1 &&  survey.Q_S4 != -9 && (survey.Q_S7 !== null && survey.Q_S7>=5) 
-                && (survey.Q_A11 != 1 && survey.Q_A7C != 2) && survey.Q_A9 !=2) || rejection">Seleccione una opción:</label>
-                <select v-model="survey.selectedMainStatus" id="mainSelect" v-if="(survey.Q_S10 != 2 && survey.Q_S8 !=1 && 
-                survey.Q_S9 != 1 &&  survey.Q_S4 != -9 && (survey.Q_S7 !== null && survey.Q_S7>=5) 
-                && (survey.Q_A11 != 1 && survey.Q_A7C != 2) && survey.Q_A9 !=2) || rejection">
+                <label for="mainSelect" v-if="(survey.Q_S10 != 2 && survey.Q_S8 != 1 &&
+                    survey.Q_S9 != 1 && survey.Q_S4 != -9 && (survey.Q_S7 !== null && survey.Q_S7 >= 5)
+                    && (survey.Q_A11 != 1 && survey.Q_A7C != 2) && survey.Q_A9 != 2) || rejection">Seleccione una
+                    opción:</label>
+                <select v-model="survey.selectedMainStatus" id="mainSelect" v-if="(survey.Q_S10 != 2 && survey.Q_S8 != 1 &&
+                    survey.Q_S9 != 1 && survey.Q_S4 != -9 && (survey.Q_S7 !== null && survey.Q_S7 >= 5)
+                    && (survey.Q_A11 != 1 && survey.Q_A7C != 2) && survey.Q_A9 != 2) || rejection">
                     <option v-for="option in mainOptions" :key="option.value" :value="option.value">
                         {{ option.label }}
                     </option>
@@ -41,7 +42,7 @@ export default {
     },
     data() {
         return {
-            rejection:"",
+            rejection: "",
             toast: useToast(),
             mainOptions: [],
             subOptions: [],
@@ -50,24 +51,24 @@ export default {
     beforeUnmount() { // O "beforeDestroy" en Vue 2
         this.$emit('update:showRejectButton', true);
     },
-    mounted(){
+    mounted() {
         this.$emit('update:showRejectButton', false);
-        this.rejection =this.$route.query.rejection
-        if(this.$route.query.rejection){
-            this.mainOptions= [
+        this.rejection = this.$route.query.rejection
+        if (this.$route.query.rejection) {
+            this.mainOptions = [
                 { label: "Entrevista efectiva incompleta", value: 2 },
                 { label: "Rechazo a la entrevista", value: 3 },
             ]
-            this.subOptions=[
-            { label: "No desea participar", value: 1 },
+            this.subOptions = [
+                { label: "No desea participar", value: 1 },
                 { label: "No tiene tiempo para participar", value: 2 },
                 { label: "Lejos de la ciudad/de viaje", value: 3 },
                 { label: "No le interesa el tema", value: 4 },
                 { label: "No responder a ninguna encuesta como norma general", value: 5 },
                 { label: "Otros", value: 6 },
             ]
-        }else{
-            this.mainOptions=[
+        } else {
+            this.mainOptions = [
                 { label: "Entrevista completa con implementación presencial", value: 1 },
                 { label: "Entrevista completa con implementación en video", value: 5 },
                 { label: "Entrevista completa con implementación mixta", value: 6 },
@@ -89,10 +90,23 @@ export default {
     methods: {
         ...mapActions(["updateStateSurvey"]),
         createSurvey(survey) {
+            if (((survey.Q_S10 != 2 && survey.Q_S8 != 1 && survey.Q_S9 != 1 && survey.Q_S4 != -9 &&
+                (survey.Q_S7 !== null && survey.Q_S7 >= 5) && (survey.Q_A11 != 1 && survey.Q_A7C != 2) &&
+                survey.Q_A9 != 2) || this.rejection) && !survey.selectedMainStatus) {
+                this.toast.error("Debe seleccionar una opción en el primer campo antes de guardar.");
+                return;
+            }
+
+            if (survey.selectedMainStatus === 3 && !survey.selectedSubStatus) {
+                this.toast.error("Debe seleccionar un motivo de rechazo antes de guardar.");
+                return;
+            }
+
             GlobalService.createData("/survey/create-survey", survey)
                 .then((response) => {
                     this.toast.success(response.data.msg);
                     this.calls = response.data.calls
+                    window.location.reload()
                 })
                 .catch((e) => {
                     this.toast.error("No se ha podido guardar la encuesta");

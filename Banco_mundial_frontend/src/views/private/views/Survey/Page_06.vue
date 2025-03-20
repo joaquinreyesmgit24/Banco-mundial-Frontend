@@ -14,6 +14,7 @@
                 <label for="NS" class="ml-3 block text-sm font-medium text-gray-700"><span class="text-blue-500">NO SABE (ESPONTÁNEO)</span></label>
             </div>
         </form>
+        {{ survey.A7A_cant_val }}
     </div>
 </template>
 
@@ -42,13 +43,29 @@ export default {
             },
         },
     },
-    watch: {
-        // Escucha cambios en S9 y actualiza buttonNext
-        "survey.Q_A7A"(newValue) {
-            if (newValue != "") {
-                this.$emit("update:buttonNext", false);
+    watch:{
+   "survey.Q_A7A"(newValue) {
+        if (newValue === "1") {
+            // Si Q_A7A es 1, chequea si A7A_cant_val tiene un valor
+            if (this.survey.A7A_cant_val <= 0) {
+                this.$emit("update:buttonNext", true); // Desactiva el botón
+            } else {
+                this.$emit("update:buttonNext", false); // Activa el botón
+            }
+        } else {
+            this.$emit("update:buttonNext", false); // Si Q_A7A no es 1, activa el botón
+        }
+    },
+    "survey.A7A_cant_val"(newValue) {
+        if (this.survey.Q_A7A === "1") {
+            // Valida el campo A7A_cant_val cuando Q_A7A es 1
+            if (!newValue || newValue <= 0) {
+                this.$emit("update:buttonNext", true); // Desactiva el botón
+            } else {
+                this.$emit("update:buttonNext", false); // Activa el botón
             }
         }
+    }
     },
     methods: {
         ...mapActions(["updateStateSurvey"]),

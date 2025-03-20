@@ -2,7 +2,7 @@
     <div class="flex justify-center">
         <form class="space-y-4 text-center">
             <label class="block text-gray-700 text-sm font-bold mb-2">A.7 ¿Es este establecimiento parte de una empresa
-                de múltiples establecimientos? (es decir, una empresa con varios establecimientos, cada uno con su
+                de múltiples establecimientos?<br>(es decir, una empresa con varios establecimientos, cada uno con su
                 propia ubicación, administración, actividad y estados financieros).</label>
             <div class="flex items-center">
                 <input id="Si" name="A7" type="radio" value="1" v-model="survey.Q_A7"
