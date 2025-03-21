@@ -43,34 +43,70 @@
                         <tr>
                             <td class="py-2 px-4 border-b border-gray-200">NOMBRE DE EMPRESA</td>
                             <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.name }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <input id="companyNameUpdate" name="companyNameUpdate" type="text" v-model="survey.companyNameUpdate"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </td>
                         </tr>
                         <tr>
                             <td class="py-2 px-4 border-b border-gray-200">NÚMERO DE CASA/PISO/PUERTA:</td>
                             <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.floorNumber }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <input id="companyFloorNumberUpdate" name="companyFloorNumberUpdate" type="text"  v-model="survey.companyFloorNumberUpdate"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </td>
                         </tr>
                         <tr>
                             <td class="py-2 px-4 border-b border-gray-200">CALLE</td>
                             <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.street }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <input id="companyStreetUpdate" name="companyStreetUpdate" type="text" v-model="survey.companyStreetUpdate"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </td>
                         </tr>
                         <tr>
                             <td class="py-2 px-4 border-b border-gray-200">CIUDAD</td>
                             <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.city }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <input id="companyCityUpdate" name="companyCityUpdate" type="text" v-model="survey.companyCityUpdate"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </td>
                         </tr>
                         <tr>
                             <td class="py-2 px-4 border-b border-gray-200">ESTADO/PROVINCIA</td>
                             <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.state }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <input id="companyStateUpdate" name="companyStateUpdate" type="text" v-model="survey.companyStateUpdate"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </td>
                         </tr>
                         <tr>
-                            <td class="py-2 px-4 border-b border-gray-200">NÚMERO DE TELÉFONO</td>
+                            <td class="py-2 px-4 border-b border-gray-200">NÚMERO DE TELÉFONO 1</td>
                             <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.phoneNumberOne }}</td>
+                            <input id="companyPhoneNumberOneUpdate" name="companyPhoneNumberOneUpdate" type="text" v-model="survey.companyPhoneNumberOneUpdate"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-200">NÚMERO DE TELÉFONO 2</td>
+                            <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.phoneNumberSecond }}</td>
+                            <input id="companyPhoneNumberSecondUpdate" name="companyPhoneNumberSecondUpdate" type="text" v-model="survey.companyPhoneNumberSecondUpdate"
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
                         </tr>
                         <tr>
                             <td class="py-2 px-4 border-b border-gray-200">NÚMERO DE FAX</td>
                             <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.faxNumber }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <input id="companyFaxNumberUpdate" name="companyFaxNumberUpdate" type="text" v-model="survey.companyFaxNumberUpdate"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </td>
                         </tr>
                         <tr>
                             <td class="py-2 px-4 border-b border-gray-200">DIRECCIÓN DE CORREO ELECTRÓNICO</td>
                             <td class="py-2 px-4 border-b border-gray-200">{{ randomCompany.emailAddress }}</td>
+                            <td class="py-2 px-4 border-b border-gray-200">
+                                <input id="companyEmailAddressUpdate" name="companyEmailAddressUpdate" type="text" v-model="survey.companyEmailAddressUpdate"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            </td>
                         </tr>
                     </tbody>
                 </table>

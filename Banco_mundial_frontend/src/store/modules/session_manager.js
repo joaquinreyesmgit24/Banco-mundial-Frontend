@@ -32,7 +32,16 @@ const state = {
         Q_S12_inter_name: "",
         Q_S12_inter_cargo: "",
         selectedMainStatus: "",
-        selectedSubStatus: ""
+        selectedSubStatus: "",
+        companyNameUpdate:"",
+        companyFloorNumberUpdate:"",
+        companyStreetUpdate:"",
+        companyCityUpdate:"",
+        companyStateUpdate:"",
+        companyFaxNumberUpdate:"",
+        companyEmailAddressUpdate:"",
+        companyPhoneNumberOneUpdate:"",
+        companyPhoneNumberSecondUpdate:""
     }
 };
 const getters = {
