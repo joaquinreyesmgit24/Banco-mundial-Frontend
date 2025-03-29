@@ -4,6 +4,8 @@ const companies = () => import('./views/Companies.vue')
 const contact = () => import('./views/Contact.vue')
 const calls = () => import('./views/Calls.vue')
 const rescheduled = () => import('./views/Rescheduled.vue')
+const reports = () => import('./views/Reports.vue')
+const surveys = () => import('./views/Surveys.vue')
 import { useRoute } from 'vue-router';
 import { defineAsyncComponent, h,  watchEffect, ref } from 'vue';
 
@@ -121,6 +123,26 @@ export const PrivateRoutes = [
             title: 'rescheduled',
             menu: 'rescheduled',
             requiredRole: ['Contactador']
+        }
+    },
+    {
+        path: '/reports',
+        component: reports,
+        name: 'reports',
+        meta: {
+            title: 'reports',
+            menu: 'reports',
+            requiredRole: ['Administrador']
+        }
+    },
+    {
+        path: '/surveys',
+        component: surveys,
+        name: 'surveys',
+        meta: {
+            title: 'surveys',
+            menu: 'surveys',
+            requiredRole: ['Administrador']
         }
     },
 ]

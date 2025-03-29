@@ -24,8 +24,20 @@
             </li>
             <li class="mb-1" v-if="userRol=='Administrador'">
                 <router-link to="/calls" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
-                    <i class="ri-timeline-view mr-3"></i>
+                    <i class="ri-headphone-line mr-3"></i>
                     <span class="text-sm">Llamadas</span>
+                </router-link>
+            </li>
+            <li class="mb-1" v-if="userRol=='Administrador'">
+                <router-link to="/reports" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                    <i class="ri-file-3-line mr-3"></i>
+                    <span class="text-sm">Reportes</span>
+                </router-link>
+            </li>
+            <li class="mb-1" v-if="userRol=='Administrador'">
+                <router-link to="/surveys" class="flex items-center py-2 px-4 text-gray-300 hover:bg-violet-950 hover:text-gray-100 rounded-md">
+                    <i class="ri-draft-line mr-3"></i>
+                    <span class="text-sm">Encuestas</span>
                 </router-link>
             </li>
             <li class="mb-1" v-if="userRol=='Contactador'">

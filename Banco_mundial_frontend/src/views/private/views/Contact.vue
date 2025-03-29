@@ -1,8 +1,7 @@
 <template>
     <div class="grid grid-cols-1 gap-6 mb-6">
-
         <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
-            <h2 v-if="randomCompany.length == 0" class="text-center">
+            <h2 v-if="!randomCompany" class="text-center">
                 <span v-if="this.$route.params.companyId">La empresa no se puede contactar debido a que no tiene llamados
                     disponibles o ya tiene un reporte</span>
                 <span v-else>No hay empresas disponibles para contactar</span>
@@ -108,7 +107,7 @@
                     </tbody>
                 </table>
             </form>
-            <button type="submit" @click="getDataRandomCompany(this.getUserID)"
+            <button type="submit" @click="changeContact()"
                 class="mt-5 px-3 text-white bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm py-3.5 mb-6 text-center">
                 Cambiar de contacto
             </button>
@@ -117,7 +116,7 @@
             <div class="bg-white p-6 rounded-md w-5xl ml-20 max-h-[80vh] overflow-auto">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-semibold">Encuesta</h2>
-                    <button @click="closeModal" class="text-gray-500 hover:text-gray-800">✖</button>
+                    <!-- <button @click="closeModal" class="text-gray-500 hover:text-gray-800">✖</button> -->
                 </div>
                 <router-view :buttonNext="buttonNext" :showRejectButton="showRejectButton"
                     @update:buttonNext="buttonNext = $event" @update:showRejectButton="showRejectButton = $event"
@@ -214,6 +213,9 @@ export default {
                 }
             }
         },
+        changeContact(){
+            window.location.reload()
+        },  
         createCall(call) {
             GlobalService.createData("/call/create-call", call)
                 .then((response) => {
@@ -221,7 +223,7 @@ export default {
                     this.toast.success(response.data.msg);
                     this.calls = response.data.calls
                     if (call.incidenceId != 1 && call.incidenceId != 2 && call.incidenceId != 3 && call.incidenceId != 4) {
-                        this.getDataRandomCompany()
+                        window.location.reload()
                     }
                 })
                 .catch((e) => {
@@ -264,7 +266,6 @@ export default {
                 }
             GlobalService.getData(`/call/get-random-company/${userId}`)
                 .then((response) => {
-                    console.log(response)
                     this.randomCompany = response
                     this.call.companyId = response.id
                     this.call.phone = response.phoneNumberOne
@@ -313,4 +314,16 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.spinner {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
