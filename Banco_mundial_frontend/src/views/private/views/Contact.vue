@@ -15,14 +15,19 @@
                             número:</label>
                         <div class="flex">
                             <div class="mr-4">
+                                <div v-if="randomCompany.phoneNumberOne">
                                 <input type="radio" name="number" :value="randomCompany.phoneNumberOne"
                                     v-model="call.phone">
                                 {{ randomCompany.phoneNumberOne }}
+                                </div>
                             </div>
                             <div>
-                                <input type="radio" name="number" :value="randomCompany.phoneNumberSecond"
+                                <div v-if="randomCompany.phoneNumberSecond">
+                                    <input type="radio" name="number"  :value="randomCompany.phoneNumberSecond"
                                     v-model="call.phone">
                                 {{ randomCompany.phoneNumberSecond }}
+                                </div>
+                               
                             </div>
                         </div>
                     </div>
