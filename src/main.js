@@ -33,10 +33,10 @@ router.beforeEach((to, from, next) => {
             if (!checkRole(to, userRoles)) {
                 // El usuario no tiene el rol necesario para acceder a esta ruta
                 // Puedes redirigirlo a una página de error o hacer lo que desees
-                if(userRoles==='Analista'){
-                    next({ name: 'reports' })
+                if(userRoles==='Administrador'){
+                    next({ name: 'users' })
                 }else{
-                    next({ name: 'statistics' })
+                    next({ name: 'contact' })
                 }
             } else {
                 next();
