@@ -147,6 +147,8 @@ import "vue-good-table-next/dist/vue-good-table-next.css";
 import { useToast } from "vue-toastification";
 import dayjs from "dayjs"; // Importa dayjs
 import { mapActions, mapGetters } from "vuex";
+import { DateTime } from 'luxon';
+
 export default {
     name: "list-users",
     components: {
@@ -163,7 +165,7 @@ export default {
             call: {
                 phone: "",
                 comment: "",
-                date: new Date().toLocaleString("sv-SE", { timeZone: "America/Santiago" }).replace("T", " "),
+                date: DateTime.now(),
                 companyId: "",
                 incidenceId: "",
                 rescheduled: {
