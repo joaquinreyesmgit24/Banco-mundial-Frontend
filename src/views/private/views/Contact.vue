@@ -165,7 +165,7 @@ export default {
             call: {
                 phone: "",
                 comment: "",
-                date: DateTime.now(),
+                date: DateTime.now().setZone("America/Santiago").toFormat("yyyy-MM-dd HH:mm:ss"),
                 companyId: "",
                 incidenceId: "",
                 rescheduled: {
